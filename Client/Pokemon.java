@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Pokemon {
     // Attributs
@@ -7,17 +8,15 @@ public class Pokemon {
     private String type;
     private int pc;
     private int pv;
-    
-    private ArrayList<Pokemon> evolutions = new ArrayList<Pokemon>();
+    private static final Random random = new Random();
 
+    private ArrayList<Pokemon> evolutions = new ArrayList<Pokemon>();
 
     public Pokemon(String nom, String type, int pc, int pv) {
         this.nom = nom;
         this.type = type;
-        this.pc = pc;
-        this.pv = pv;
-        
-        
+        this.pc = random.nextInt(100) + 1;
+        this.pv = random.nextInt(100) + 1;
     }
 
     // Getters et Setters pour chaque attribut
@@ -46,7 +45,7 @@ public class Pokemon {
         this.evolutions = evolutions;
     }
 
-    public void setNom(String nom){
+    public void setNom(String nom) {
 
         this.nom = nom;
     }
@@ -63,10 +62,6 @@ public class Pokemon {
         this.pv = pv;
     }
 
-    
-
-   
-
     // Méthode pour afficher les informations du Pokémon
     @Override
     public String toString() {
@@ -75,7 +70,7 @@ public class Pokemon {
                 "type='" + type + '\'' +
                 ", pc=" + pc +
                 ", pv=" + pv +
-                
+
                 '}';
     }
 }
