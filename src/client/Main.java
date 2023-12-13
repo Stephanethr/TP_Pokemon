@@ -178,11 +178,11 @@ public class Main implements Serializable {
 
                                     sc.nextLine(); // Pour consommer la nouvelle ligne après avoir lu l'entier
 
-                                    Pokemon pokemon2 = dresseur.getPokemons().get(id2);
+                                    Pokemon pokEvolution = dresseur.getPokemons().get(id2);
 
-                                    pokemon2.evolution(dresseur);
+                                    pokEvolution.evolution(dresseur);
 
-                                    
+
                                     
                                     break;
 
