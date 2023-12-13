@@ -167,42 +167,42 @@ public class Main implements Serializable {
                             sc.nextLine(); // Pour consommer la nouvelle ligne après avoir lu l'entier
 
                             switch (choix2) {
-
                                 case 1:
-
                                     System.out.println("Vous avez choisi d'évoluer un Pokémon ! \n");
-
                                     System.out.println("Quel est l'ID du Pokémon que vous voulez faire évoluer ? \n");
-
+                            
                                     int id2 = sc.nextInt();
-
                                     sc.nextLine(); // Pour consommer la nouvelle ligne après avoir lu l'entier
-
-                                    Pokemon pokEvolution = dresseur.getPokemons().get(id2);
-
-                                    pokEvolution.evolution(dresseur);
-
-
-                                    
+                            
+                                    if (id2 >= 0 && id2 < dresseur.getPokemons().size()) {
+                                        Pokemon pokEvolution = dresseur.getPokemons().get(id2);
+                                        pokEvolution.evolution(dresseur);
+                                    } else {
+                                        System.out.println("ID invalide.");
+                                    }
                                     break;
-
+                            
                                 case 2:
                                     System.out.println("Vous avez choisi de supprimer un Pokémon ! \n");
                                     System.out.println("Quel est l'ID du Pokémon que vous voulez supprimer ? \n");
+                            
                                     int id = sc.nextInt();
                                     sc.nextLine(); // Pour consommer la nouvelle ligne après avoir lu l'entier
-                                    dresseur.supprimerPokemon(id);
+                            
+                                    if (id >= 0 && id < dresseur.getPokemons().size()) {
+                                        dresseur.supprimerPokemon(id);
+                                    } else {
+                                        System.out.println("ID invalide.");
+                                    }
                                     break;
-
+                            
                                 case 3:
                                     System.out.println("Vous avez choisi de retourner au menu ! \n");
                                     break;
-                                
+                            
                                 default:
                                     System.out.println("Vous n'avez pas choisi une option valide ! \n");
                                     break;
-                            
-                                
                             }
                             
                         
