@@ -1,5 +1,7 @@
 package src.client;
-public class Bonbon {
+import java.io.Serializable;
+
+public class Bonbon implements Serializable {
 
     // Attributs
 
