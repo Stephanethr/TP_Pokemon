@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.io.Serializable;
 
-public class Pokemon implements Serializable{
+public class Pokemon implements Serializable {
     // Attributs
 
     private String nom;
@@ -21,8 +21,8 @@ public class Pokemon implements Serializable{
     public Pokemon(String nom, String type) {
         this.nom = nom;
         this.type = type;
-        this.pc = random.nextInt(100) + 50;
-        this.pv = random.nextInt(100) + 50;
+        this.pc = random.nextInt(800) + 1;
+        this.pv = random.nextInt(100) + 20;
         this.setEvolutions();
     }
 
@@ -74,7 +74,6 @@ public class Pokemon implements Serializable{
                 if (parts[0].equals(this.nom)) {
                     for (int i = 1; i < parts.length; i++) {
                         String[] evolutionParts = parts[i].split(",");
-                        System.out.println("nom récupérés : " + evolutionParts[0] + " " + evolutionParts[1] + " " + evolutionParts[2]);
                         String evolution1 = evolutionParts[0];
                         this.evolutions.add(evolution1);
                         if (evolutionParts.length > 1) {
@@ -94,22 +93,54 @@ public class Pokemon implements Serializable{
         }
     }
 
-    public void evolution(){
+    public void evolution() {
+
+        // vérifie si le Pokémon peut évoluer
         if (this.evolutions.size() == 0) {
             System.out.println("Ce Pokémon ne peut pas évoluer !");
             return;
         }
-        if (this.evolutions.size() < 2) {     
-            System.out.println("Votre Pokémon a évolué en " + this.evolutions.get(0));
-            this.nom = this.evolutions.get(0);
-            this.evolutions.remove(0);
+
+        // calcul du coût de l'evolution
+        if (this.evolutions.size() == 1) {
+
             return;
         }
 
+        if (this.evolutions.size() == 2) {
 
-        
-        this.nom = this.evolutions.get(0);
-        this.evolutions.remove(0);
+            return;
+        }
+
+        if (this.nom == "Evoli") {
+            int randomEvolution = random.nextInt(this.evolutions.size());
+            this.nom = this.evolutions.get(randomEvolution);
+            this.pc += (this.pc * 0.7);
+            this.pv += (this.pv * 0.7);
+
+            switch (this.nom) {
+                case "Voltali":
+                    this.type = "Electrique";
+                    break;
+
+                case "Pyroli":
+                    this.type = "Feu";
+                    break;
+
+                case "Aquali":
+                    this.type = "Eau";
+                    break;
+
+                default:
+                    break;
+            }
+        } else {
+            this.nom = this.evolutions.get(0);
+            this.pc += (this.pc * 0.7);
+            this.pv += (this.pv * 0.7);
+            this.evolutions.remove(0);
+            System.out.println("Votre Pokémon a évolué en " + this.evolutions.get(0));
+        }
     }
 
     // Méthode pour afficher les informations du Pokémon
