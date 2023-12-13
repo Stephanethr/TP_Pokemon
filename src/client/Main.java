@@ -74,7 +74,7 @@ public class Main implements Serializable {
                 System.out.println("5. Sauvegarder votre partie");
                 System.out.println("6. Charger une partie");
                 System.out.println("7. Quitter le jeu \n");
-                System.out.println("8. GENERER PLEINS DE POKEMONS\n");
+                
 
                 int choix = sc.nextInt();
                 sc.nextLine(); // Pour consommer la nouvelle ligne après avoir lu l'entier
@@ -83,32 +83,68 @@ public class Main implements Serializable {
 
                     case 1:
                         System.out.println("Vous avez choisi d'ouvrir une lootbox ! \n");
-                        Pokemon pokemon = PokemonGenerator.generateRandomPokemon();
-                        System.out.println(pokemon.toString() + "\n"); // Affiche les détails du Pokémon
 
-                        Bonbon bonbon = new Bonbon(pokemon.getType());
-                        dresseur.ajouterBonbon(bonbon);
+                        System.out.println("Que voulez vous generer : \n");
 
-                        System.out.println("Vous avez reçu un bonbon de type " + bonbon.getType() + "\n");
+                        System.out.println("1. Un Pokémon");
+                        System.out.println("2. Plusieurs Pokémons \n");
 
-                        System.out.println("Voulez-vous garder ce Pokemon ? (y/n) \n");
-                        reponse = sc.nextLine();
+                        int choix3 = sc.nextInt();
+                        sc.nextLine(); // Pour consommer la nouvelle ligne après avoir lu l'entier
 
-                        if (reponse.equals("y")) {
-                            dresseur.ajouterPokemon(pokemon);
-                            System.out.println("Vous avez choisi de garder ce Pokémon ! \n");
+                        switch (choix3) {
+                            case 1:
 
-                        } else if (reponse.equals("n")) {
+                                Pokemon pokemon = PokemonGenerator.generateRandomPokemon();
+                                System.out.println(pokemon.toString() + "\n"); // Affiche les détails du Pokémon
 
-                            System.out.println("Vous avez choisi de jeter " + pokemon.getNom() + " à la poubelle ! \n");
+                                Bonbon bonbon = new Bonbon(pokemon.getType());
+                                dresseur.ajouterBonbon(bonbon);
 
-                        } else {
-                            System.out.println("Vous n'avez pas choisi une option valide !");
-                            System.out.println("Voulez-vous le garder ? (y/n)");
-                            reponse = sc.nextLine();
+                                System.out.println("Vous avez reçu un bonbon de type " + bonbon.getType() + "\n");
+
+                                System.out.println("Voulez-vous garder ce Pokemon ? (y/n) \n");
+                                reponse = sc.nextLine();
+
+                                if (reponse.equals("y")) {
+                                    dresseur.ajouterPokemon(pokemon);
+                                    System.out.println("Vous avez choisi de garder ce Pokémon ! \n");
+
+                                } else if (reponse.equals("n")) {
+
+                                    System.out.println("Vous avez choisi de jeter " + pokemon.getNom() + " à la poubelle ! \n");
+
+                                } else {
+                                    System.out.println("Vous n'avez pas choisi une option valide !");
+                                    System.out.println("Voulez-vous le garder ? (y/n)");
+                                    reponse = sc.nextLine();
+                                }
+
+                                break;
+
+                            case 2:
+
+                                System.out.println("Vous avez choisi de générer pleins de pokemons !\n");
+                                System.out.println("Combien de pokemons voulez vous générer ?\n");
+                                int nb = sc.nextInt();
+                                for (int i = 0; i < nb; i++) {
+                                    Pokemon pokGen = PokemonGenerator.generateRandomPokemon();
+                                    System.out.println(pokGen.toString() + "\n"); // Affiche les détails du Pokémon
+                                    Bonbon bonbGen = new Bonbon(pokGen.getType());
+                                    dresseur.ajouterBonbon(bonbGen);
+                                    dresseur.ajouterPokemon(pokGen);
+                                }
+                                break;
+
+                                
+
+                        
+                            default:
+                                break;
                         }
 
-                        break;
+
+                        
 
                     case 2:
                         if (dresseur.getPokemons().size() < 6) {
@@ -231,18 +267,6 @@ public class Main implements Serializable {
                         System.exit(0); // Termine le programme
                         break;
 
-                    case 8:
-                        System.out.println("Vous avez choisi de générer pleins de pokemons !\n");
-                        System.out.println("Combien de pokemons voulez vous générer ?\n");
-                        int nb = sc.nextInt();
-                        for (int i = 0; i < nb; i++) {
-                            Pokemon pokGen = PokemonGenerator.generateRandomPokemon();
-                            System.out.println(pokGen.toString() + "\n"); // Affiche les détails du Pokémon
-                            Bonbon bonbGen = new Bonbon(pokGen.getType());
-                            dresseur.ajouterBonbon(bonbGen);
-                            dresseur.ajouterPokemon(pokGen);
-                        }
-                        break;
 
                     default:
                         System.out.println("Vous n'avez pas choisi une option valide ! \n");
