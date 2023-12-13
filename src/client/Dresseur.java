@@ -10,7 +10,6 @@ public class Dresseur implements Serializable{
     ArrayList<Pokemon> pokemons = new ArrayList<Pokemon>();
     ArrayList<Bonbon> bonbons = new ArrayList<Bonbon>();
 
-
     public Dresseur(String pseudo) {
 
         this.pseudo = pseudo;
@@ -54,13 +53,13 @@ public class Dresseur implements Serializable{
     public void supprimerPokemon(Pokemon pokemon) {
 
         pokemons.remove(pokemon);
-        System.out.println("Vous avez supprimé " + pokemon.getNom() + " son corp a été envoyer à l'abatoire");
+        System.out.println("Vous avez supprimé " + pokemon.getNom() + " son corps a été envoyer à l'abbatoire");
 
     }
 
-    public void supprimerBonbon(Bonbon bonbon) {
+    public void supprimerBonbon(Bonbon bonbon, int quantite) {
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < quantite; i++) {
             if (bonbons.get(i).getType().equals(bonbon.getType())) {
                 bonbons.remove(i);
             }
