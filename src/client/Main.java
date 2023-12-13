@@ -153,10 +153,39 @@ public class Main implements Serializable {
                         System.out.println("Vous n'avez pas de Pokémons ! \n");
                     } else {
 
-                        System.out.println("Voici vos Pokémons :");
-                        dresseur.afficherPokemons();
-                        System.out.println("appuyez sur entrée pour continuer \n");
-                        sc.nextLine();
+                        while (true) {
+                            
+                            System.out.println("Voici vos Pokémons :");
+                            dresseur.afficherPokemons();
+
+                            System.out.println("Que voulez vous faire : \n");
+                            System.out.println("1. Evoluer un Pokémon");
+                            System.out.println("2. Supprimer un Pokémon");
+                            System.out.println("3. Retourner au menu \n");
+
+                            int choix2 = sc.nextInt();
+                            sc.nextLine(); // Pour consommer la nouvelle ligne après avoir lu l'entier
+
+                            switch (choix2) {
+                                case 1:
+                                    
+                                    break;
+
+                                case 2:
+                                    System.out.println("Vous avez choisi de supprimer un Pokémon ! \n");
+                                    System.out.println("Quel est l'ID du Pokémon que vous voulez supprimer ? \n");
+                                    int id = sc.nextInt();
+                                    sc.nextLine(); // Pour consommer la nouvelle ligne après avoir lu l'entier
+                                    dresseur.supprimerPokemon(id);
+                                    break;
+                            
+                                default:
+                                    break;
+                            }
+                            
+                        }
+
+                        
                     
                     }
 

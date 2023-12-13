@@ -60,12 +60,16 @@ public class Dresseur implements Serializable{
         bonbons.add(bonbon);
     }
 
-    public void supprimerPokemon(Pokemon pokemon) {
-
-        pokemons.remove(pokemon);
-        System.out.println("Vous avez supprimé " + pokemon.getNom() + " son corps a été envoyer à l'abbatoire");
-
+    public void supprimerPokemon(int id) {
+        if (id >= 0 && id < pokemons.size()) {
+            Pokemon pokemon = pokemons.get(id);
+            pokemons.remove(id);
+            System.out.println("Vous avez supprimé " + pokemon.getNom() + " son corps a été envoyé à l'abattoir");
+        } else {
+            System.out.println("ID invalide. Aucun Pokémon n'a été supprimé.");
+        }
     }
+    
 
     public void supprimerBonbon(Bonbon bonbon, int quantite) {
 
