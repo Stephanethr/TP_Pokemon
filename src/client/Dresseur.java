@@ -1,7 +1,8 @@
 package src.client;
 import java.util.ArrayList;
+import java.io.Serializable;
 
-public class Dresseur {
+public class Dresseur implements Serializable{
 
     // Attributs
 
@@ -69,7 +70,7 @@ public class Dresseur {
 
     public void afficherPokemons() {
         for (Pokemon pokemon : pokemons) {
-            System.out.println(pokemon.toString());
+            System.out.println(pokemon.toString() + "\n");
         }
     }
 

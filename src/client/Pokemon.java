@@ -1,8 +1,9 @@
 package src.client;
 import java.util.ArrayList;
 import java.util.Random;
+import java.io.Serializable;
 
-public class Pokemon {
+public class Pokemon implements Serializable{
     // Attributs
 
     private String nom;
