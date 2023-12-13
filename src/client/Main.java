@@ -1,7 +1,6 @@
 package src.client;
 import java.io.*;
 import java.util.Scanner;
-import java.io.Serializable;
 
 
 
@@ -29,23 +28,8 @@ public class Main implements Serializable {
     }
 
 
-    public static void charger(String filePath,Dresseur dresseur){
+   
 
-        try {
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filePath));
-            dresseur = (Dresseur) ois.readObject();
-            ois.close();
-            System.out.println(dresseur.toString());
-        } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    } catch (ClassNotFoundException e) {
-                        e.printStackTrace();   
-                    }
-
-
-    }
     
 
     public static void main(String[] args) {
@@ -78,11 +62,11 @@ public class Main implements Serializable {
                     continue;
                 }
 
-                charger(filePath,dresseur);
+                dresseur = Dresseur.charger(filePath);
                 
                
 
-                break;
+                
 
             } else if (reponse.equals("n")) {
                 System.out.println("Entrez votre pseudo :");
@@ -109,7 +93,7 @@ public class Main implements Serializable {
         System.out.println("Quel est votre choix de départ ? \n");
 
         while (true) {
-            System.out.println("Que voulez-vous faire ?");
+            System.out.println("Que voulez-vous faire " + dresseur.getPseudo() +" ?");
             System.out.println("1. Ouvrir une lootbox");
             System.out.println("2. Combattre un autre dresseur");
             System.out.println("3. Voir ses pokemons");
@@ -211,15 +195,16 @@ public class Main implements Serializable {
                     String pseudoCharge = sc.nextLine();
 
                     
-                    filePath = "src\\sauvegarde\\" + pseudoCharge + ".txt";
+                    String fileCharge= "src\\sauvegarde\\" + pseudoCharge + ".txt";
 
-                    if (!new File(filePath).exists()) {
+                    if (!new File(fileCharge).exists()) {
                         System.out.println("Ce pseudo n'existe pas !");
                         break;
                     }
 
-                    charger(filePath,dresseur);
+                    dresseur = Dresseur.charger(fileCharge);
                     pseudo = pseudoCharge;
+                    filePath = fileCharge;
 
 
 
