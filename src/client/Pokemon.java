@@ -94,6 +94,24 @@ public class Pokemon implements Serializable{
         }
     }
 
+    public void evolution(){
+        if (this.evolutions.size() == 0) {
+            System.out.println("Ce Pokémon ne peut pas évoluer !");
+            return;
+        }
+        if (this.evolutions.size() < 2) {     
+            System.out.println("Votre Pokémon a évolué en " + this.evolutions.get(0));
+            this.nom = this.evolutions.get(0);
+            this.evolutions.remove(0);
+            return;
+        }
+
+
+        
+        this.nom = this.evolutions.get(0);
+        this.evolutions.remove(0);
+    }
+
     // Méthode pour afficher les informations du Pokémon
     @Override
     public String toString() {
