@@ -13,11 +13,11 @@ public class Pokemon {
 
     private ArrayList<Pokemon> evolutions = new ArrayList<Pokemon>();
 
-    public Pokemon(String nom, String type, int pc, int pv) {
+    public Pokemon(String nom, String type) {
         this.nom = nom;
         this.type = type;
-        this.pc = random.nextInt(100) + 1;
-        this.pv = random.nextInt(100) + 1;
+        this.pc = random.nextInt(100) + 50;
+        this.pv = random.nextInt(100) + 50;
     }
 
     // Getters et Setters pour chaque attribut
