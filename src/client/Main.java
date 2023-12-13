@@ -93,7 +93,7 @@ public class Main implements Serializable {
         System.out.println("Quel est votre choix de départ ? \n");
 
         while (true) {
-            System.out.println("Que voulez-vous faire " + dresseur.getPseudo() +" ?");
+            System.out.println("\n Que voulez-vous faire " + dresseur.getPseudo() +" ?");
             System.out.println("1. Ouvrir une lootbox");
             System.out.println("2. Combattre un autre dresseur");
             System.out.println("3. Voir ses pokemons");
@@ -153,7 +153,7 @@ public class Main implements Serializable {
                         System.out.println("Vous n'avez pas de Pokémons ! \n");
                     } else {
 
-                        while (true) {
+                        
                             
                             System.out.println("Voici vos Pokémons :");
                             dresseur.afficherPokemons();
@@ -167,6 +167,7 @@ public class Main implements Serializable {
                             sc.nextLine(); // Pour consommer la nouvelle ligne après avoir lu l'entier
 
                             switch (choix2) {
+
                                 case 1:
                                     
                                     break;
@@ -178,12 +179,19 @@ public class Main implements Serializable {
                                     sc.nextLine(); // Pour consommer la nouvelle ligne après avoir lu l'entier
                                     dresseur.supprimerPokemon(id);
                                     break;
-                            
-                                default:
+
+                                case 3:
+                                    System.out.println("Vous avez choisi de retourner au menu ! \n");
                                     break;
+                                
+                                default:
+                                    System.out.println("Vous n'avez pas choisi une option valide ! \n");
+                                    break;
+                            
+                                
                             }
                             
-                        }
+                        
 
                         
                     
