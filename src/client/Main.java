@@ -21,9 +21,10 @@ public class Main {
             System.out.println("Que voulez-vous faire ?");
             System.out.println("1. Ouvrir une lootbox");
             System.out.println("2. Combattre un autre dresseur");
-            System.out.println("3. Sauvegarder votre partie");
-            System.out.println("4. Charger une partie");
-            System.out.println("5. Quitter le jeu");
+            System.out.println("3. Voir ses pokemons");
+            System.out.println("4. Sauvegarder votre partie");
+            System.out.println("5. Charger une partie");
+            System.out.println("6. Quitter le jeu");
 
             int choix = sc.nextInt();
             sc.nextLine(); // Pour consommer la nouvelle ligne après avoir lu l'entier
@@ -56,14 +57,23 @@ public class Main {
                     break;
 
                 case 3:
-                    System.out.println("Vous avez choisi de sauvegarder votre partie !");
+                    dresseur.afficherPokemons();
+                    System.out.println("appuyez sur entrée pour continuer");
+                    sc.nextLine();
+                    
                     break;
 
                 case 4:
+                
+                    System.out.println("Vous avez choisi de sauvegarder votre partie !");
+                    break;
+                    
+
+                case 5:
                     System.out.println("Vous avez choisi de charger une partie !");
                     break;
 
-                case 5:
+                case 6:
                     System.out.println("Vous avez choisi de quitter le jeu !");
                     sc.close(); // Ferme le scanner avant de quitter
                     System.exit(0); // Termine le programme
