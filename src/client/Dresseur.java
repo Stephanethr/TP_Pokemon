@@ -1,6 +1,10 @@
 package src.client;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Dresseur implements Serializable{
 
@@ -74,11 +78,21 @@ public class Dresseur implements Serializable{
     }
 
     public void afficherBonbons() {
-        for (Bonbon bonbon : bonbons) {
-            System.out.println(bonbon.getType());
-        }
+    Map<String, Integer> bonbonsParType = new HashMap<>();
+
+    // Parcourir la liste des bonbons pour compter leur nombre par type
+    for (Bonbon bonbon : bonbons) {
+        String type = bonbon.getType();
+        bonbonsParType.put(type, bonbonsParType.getOrDefault(type, 0) + 1);
     }
 
+    // Afficher les bonbons par type et leur compteur
+    for (Map.Entry<String, Integer> entry : bonbonsParType.entrySet()) {
+        String type = entry.getKey();
+        int compteur = entry.getValue();
+        System.out.println(type + " (x" + compteur + ")");
+    }
+}
     
 
     
