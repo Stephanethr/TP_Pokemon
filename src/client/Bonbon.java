@@ -1,4 +1,4 @@
-package src;
+package src.client;
 public class Bonbon {
 
     // Attributs

@@ -1,4 +1,4 @@
-package src;
+package src.serveur;
 
 import java.net.ServerSocket;
 public class Serveur {

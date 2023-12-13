@@ -1,4 +1,4 @@
-package src;
+package src.client;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;

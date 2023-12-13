@@ -1,4 +1,4 @@
-package src;
+package src.client;
 import java.util.ArrayList;
 
 public class Dresseur {
