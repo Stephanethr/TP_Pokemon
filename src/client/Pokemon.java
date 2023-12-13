@@ -122,6 +122,10 @@ public class Pokemon implements Serializable {
     public void evolution(Dresseur dresseur) {
         // vérifie si le dresseur a assez de bonbons du type du pokemon pour faire
         // évoluer son Pokémon et si oui, fait évoluer le Pokémon
+        if (this.evolutions.size() == 0) {
+            System.out.println("Votre Pokémon ne peut pas évoluer");
+            return;
+        }
         if (dresseur.getNombreBonbonsParType(this.type) >= this.verifCoutEvolution()) {
             dresseur.supprimerBonbon(this.type, this.verifCoutEvolution());
 
@@ -154,10 +158,19 @@ public class Pokemon implements Serializable {
             }
             this.pc += (this.pc * 0.7);
             this.pv += (this.pv * 0.7);
-            System.out.println("Votre Pokémon a évolué en " + this.evolutions.get(0));
+            System.out.println("Votre Pokémon a évolué en " + this.nom + " !");
         } else {
             System.out.println("Vous n'avez pas assez de bonbons pour faire évoluer votre Pokémon");
         }
+    }
+
+    public int calculerDegats() {
+        return (int) (this.pc * 0.1);
+    }
+
+    // Méthode pour que le pokemon reçoive les dégâts
+    public void recevoirDegats(int degats) {
+        this.pv -= degats;
     }
 
     // Méthode pour afficher les informations du Pokémon
