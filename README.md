@@ -3,9 +3,15 @@
 # Crée par :
 Projet réalisé par Stéphane Thiry et Frédéric Turcq-Santucci
 
-# fonctionnement 
+# Fonctionnement 
 
-- Se positionner dans le dossier tpPokemon, lancer le main present dans le dossier src/Client/main.java.
+Se positionner dans le dossier tpPokemon, lancer le main present dans le dossier src/Client/main.java.
+ 
+ Quand vous créerez un nouveau compte une sauvegarde comptenant ce perso sera directement créé dans le dossier sauvegarde 
+
+ si vous souhaitez récupérer votre sauvegarde vous devez donne votre pseudo au debut ou choisir l'option charger dans le menu
+ 
+ 
 - Choisir les instruction selon votre choix.
 - Pour évoluer un pokemon il vous faudra choisir l'option "3. Voir ses pokemon"  puis "1. evoluer pokemon" saisir l'id correspondant.
 
