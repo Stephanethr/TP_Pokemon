@@ -1,16 +1,11 @@
 package src.client;
+
 import java.io.*;
 import java.util.Scanner;
 
-
-
-
-
-
 public class Main implements Serializable {
 
-
-    public static void save(String filePath,Dresseur dresseur){
+    public static void save(String filePath, Dresseur dresseur) {
         try {
             // Création du flux de sortie vers le fichier
             FileOutputStream fileOutputStream = new FileOutputStream(filePath);
@@ -26,11 +21,6 @@ public class Main implements Serializable {
             e.printStackTrace();
         }
     }
-
-
-   
-
-    
 
     public static void main(String[] args) {
 
@@ -71,42 +61,39 @@ public class Main implements Serializable {
         }
 
 
-        
-        
+            System.out.println("Bonjour " + pseudo + "! \n");
 
-        System.out.println("Bonjour " + pseudo + "! \n");
+            System.out.println("Quel est votre choix de départ ? \n");
 
-        System.out.println("Quel est votre choix de départ ? \n");
+            while (true) {
+                System.out.println("\n Que voulez-vous faire " + dresseur.getPseudo() + " ?");
+                System.out.println("1. Ouvrir une lootbox");
+                System.out.println("2. Combattre un autre dresseur");
+                System.out.println("3. Voir ses pokemons");
+                System.out.println("4. Voir ses bonbons");
+                System.out.println("5. Sauvegarder votre partie");
+                System.out.println("6. Charger une partie");
+                System.out.println("7. Quitter le jeu \n");
+                System.out.println("8. GENERER PLEINS DE POKEMONS\n");
 
-        while (true) {
-            System.out.println("\n Que voulez-vous faire " + dresseur.getPseudo() +" ?");
-            System.out.println("1. Ouvrir une lootbox");
-            System.out.println("2. Combattre un autre dresseur");
-            System.out.println("3. Voir ses pokemons");
-            System.out.println("4. Voir ses bonbons");
-            System.out.println("5. Sauvegarder votre partie");
-            System.out.println("6. Charger une partie");
-            System.out.println("7. Quitter le jeu \n");
+                int choix = sc.nextInt();
+                sc.nextLine(); // Pour consommer la nouvelle ligne après avoir lu l'entier
 
-            int choix = sc.nextInt();
-            sc.nextLine(); // Pour consommer la nouvelle ligne après avoir lu l'entier
+                switch (choix) {
 
-            switch (choix) {
+                    case 1:
+                        System.out.println("Vous avez choisi d'ouvrir une lootbox ! \n");
+                        Pokemon pokemon = PokemonGenerator.generateRandomPokemon();
+                        System.out.println(pokemon.toString() + "\n"); // Affiche les détails du Pokémon
 
-                case 1:
-                    System.out.println("Vous avez choisi d'ouvrir une lootbox ! \n");
-                    Pokemon pokemon = PokemonGenerator.generateRandomPokemon();
-                    System.out.println(pokemon.toString() + "\n"); // Affiche les détails du Pokémon
+                        Bonbon bonbon = new Bonbon(pokemon.getType());
+                        dresseur.ajouterBonbon(bonbon);
 
-                    Bonbon bonbon = new Bonbon(pokemon.getType());
-                    dresseur.ajouterBonbon(bonbon);
+                        System.out.println("Vous avez reçu un bonbon de type " + bonbon.getType() + "\n");
 
-                    System.out.println("Vous avez reçu un bonbon de type " + bonbon.getType() + "\n");
+                        System.out.println("Voulez-vous garder ce Pokemon ? (y/n) \n");
+                        reponse = sc.nextLine();
 
-
-                    System.out.println("Voulez-vous garder ce Pokemon ? (y/n) \n");
-                    reponse = sc.nextLine();
-                    
                         if (reponse.equals("y")) {
                             dresseur.ajouterPokemon(pokemon);
                             System.out.println("Vous avez choisi de garder ce Pokémon ! \n");
@@ -114,33 +101,30 @@ public class Main implements Serializable {
                         } else if (reponse.equals("n")) {
 
                             System.out.println("Vous avez choisi de jeter " + pokemon.getNom() + " à la poubelle ! \n");
-                           
+
                         } else {
                             System.out.println("Vous n'avez pas choisi une option valide !");
                             System.out.println("Voulez-vous le garder ? (y/n)");
                             reponse = sc.nextLine();
                         }
-                        
-                    break;
-                    
 
-                case 2:
-                    if (dresseur.getPokemons().size() < 6) {
-                        System.out.println("Vous n'avez pas assez de Pokémons ! Vous devez en avoir minimum 6 !\n");
-                    } else {
-                        System.out.println("Vous avez choisi de combattre un autre dresseur !\n");
-                    }
-                    break;
+                        break;
 
-                case 3:
+                    case 2:
+                        if (dresseur.getPokemons().size() < 6) {
+                            System.out.println("Vous n'avez pas assez de Pokémons ! Vous devez en avoir minimum 6 !\n");
+                        } else {
+                            System.out.println("Vous avez choisi de combattre un autre dresseur !\n");
+                        }
+                        break;
 
-                    System.out.println("Vous avez choisi de voir vos pokemons !\n");
-                    if (dresseur.getPokemons().size() == 0 ) {
-                        System.out.println("Vous n'avez pas de Pokémons ! \n");
-                    } else {
+                    case 3:
 
-                        
-                            
+                        System.out.println("Vous avez choisi de voir vos pokemons !\n");
+                        if (dresseur.getPokemons().size() == 0) {
+                            System.out.println("Vous n'avez pas de Pokémons ! \n");
+                        } else {
+
                             System.out.println("Voici vos Pokémons :");
                             dresseur.afficherPokemons();
 
@@ -156,10 +140,10 @@ public class Main implements Serializable {
                                 case 1:
                                     System.out.println("Vous avez choisi d'évoluer un Pokémon ! \n");
                                     System.out.println("Quel est l'ID du Pokémon que vous voulez faire évoluer ? \n");
-                            
+
                                     int id2 = sc.nextInt();
                                     sc.nextLine(); // Pour consommer la nouvelle ligne après avoir lu l'entier
-                            
+
                                     if (id2 >= 0 && id2 < dresseur.getPokemons().size()) {
                                         Pokemon pokEvolution = dresseur.getPokemons().get(id2);
                                         pokEvolution.evolution(dresseur);
@@ -167,99 +151,104 @@ public class Main implements Serializable {
                                         System.out.println("ID invalide.");
                                     }
                                     break;
-                            
+
                                 case 2:
                                     System.out.println("Vous avez choisi de supprimer un Pokémon ! \n");
                                     System.out.println("Quel est l'ID du Pokémon que vous voulez supprimer ? \n");
-                            
+
                                     int id = sc.nextInt();
                                     sc.nextLine(); // Pour consommer la nouvelle ligne après avoir lu l'entier
-                            
+
                                     if (id >= 0 && id < dresseur.getPokemons().size()) {
                                         dresseur.supprimerPokemon(id);
                                     } else {
                                         System.out.println("ID invalide.");
                                     }
                                     break;
-                            
+
                                 case 3:
                                     System.out.println("Vous avez choisi de retourner au menu ! \n");
                                     break;
-                            
+
                                 default:
                                     System.out.println("Vous n'avez pas choisi une option valide ! \n");
                                     break;
                             }
-                            
-                        
 
-                        
-                    
-                    }
+                        }
 
-                    break;
-
-                case 4:
-
-                    System.out.println("Vous avez choisi de voir vos bonbons !\n");
-                    if (dresseur.bonbons.size() == 0 ) {
-
-                        System.out.println("Vous n'avez pas de bonbons ! \n");
-
-                    } else {
-
-                        System.out.println("Voici vos bonbons :");
-                        dresseur.afficherBonbons();
-                        System.out.println("appuyez sur entrée pour continuer \n");
-                        sc.nextLine();
-                    
-                    }
-
-                    break;
-                    
-                    
-                case 5:
-
-                    System.out.println("Sauvegarde effectuée !");
-
-                    save(filePath, dresseur);
-                    break;
-
-                case 6:
-                    System.out.println("Vous avez choisi de charger une partie ! \n");
-
-                    System.out.println("quel est le pseudo de votre sauvegarde ?");
-                    String pseudoCharge = sc.nextLine();
-
-                    
-                    String fileCharge= "src\\sauvegarde\\" + pseudoCharge + ".txt";
-
-                    if (!new File(fileCharge).exists()) {
-                        System.out.println("Ce pseudo n'existe pas !");
                         break;
-                    }
 
-                    dresseur = Dresseur.charger(fileCharge);
-                    pseudo = pseudoCharge;
-                    filePath = fileCharge;
+                    case 4:
 
+                        System.out.println("Vous avez choisi de voir vos bonbons !\n");
+                        if (dresseur.bonbons.size() == 0) {
 
+                            System.out.println("Vous n'avez pas de bonbons ! \n");
 
-                    break;
+                        } else {
 
-                case 7:
-                    System.out.println("Vous avez choisi de quitter le jeu !\n");
-                    System.out.println("Votre partie a été sauvegardée ! \n");
-                    save(filePath, dresseur);
-                    sc.close(); // Ferme le scanner avant de quitter
-                    System.exit(0); // Termine le programme
-                    break;
+                            System.out.println("Voici vos bonbons :");
+                            dresseur.afficherBonbons();
+                            System.out.println("appuyez sur entrée pour continuer \n");
+                            sc.nextLine();
 
-                default:
-                    System.out.println("Vous n'avez pas choisi une option valide ! \n");
-                    break;
+                        }
+
+                        break;
+
+                    case 5:
+
+                        System.out.println("Sauvegarde effectuée !");
+
+                        save(filePath, dresseur);
+                        break;
+
+                    case 6:
+                        System.out.println("Vous avez choisi de charger une partie ! \n");
+
+                        System.out.println("quel est le pseudo de votre sauvegarde ?");
+                        String pseudoCharge = sc.nextLine();
+
+                        String fileCharge = "src\\sauvegarde\\" + pseudoCharge + ".txt";
+
+                        if (!new File(fileCharge).exists()) {
+                            System.out.println("Ce pseudo n'existe pas !");
+                            break;
+                        }
+
+                        dresseur = Dresseur.charger(fileCharge);
+                        pseudo = pseudoCharge;
+                        filePath = fileCharge;
+
+                        break;
+
+                    case 7:
+                        System.out.println("Vous avez choisi de quitter le jeu !\n");
+                        System.out.println("Votre partie a été sauvegardée ! \n");
+                        save(filePath, dresseur);
+                        sc.close(); // Ferme le scanner avant de quitter
+                        System.exit(0); // Termine le programme
+                        break;
+
+                    case 8:
+                        System.out.println("Vous avez choisi de générer pleins de pokemons !\n");
+                        System.out.println("Combien de pokemons voulez vous générer ?\n");
+                        int nb = sc.nextInt();
+                        for (int i = 0; i < nb; i++) {
+                            Pokemon pokGen = PokemonGenerator.generateRandomPokemon();
+                            System.out.println(pokGen.toString() + "\n"); // Affiche les détails du Pokémon
+                            Bonbon bonbGen = new Bonbon(pokGen.getType());
+                            dresseur.ajouterBonbon(bonbGen);
+                            dresseur.ajouterPokemon(pokGen);
+                        }
+                        break;
+
+                    default:
+                        System.out.println("Vous n'avez pas choisi une option valide ! \n");
+                        break;
+                }
             }
         }
-    }
 
 }
