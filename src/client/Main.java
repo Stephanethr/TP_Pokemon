@@ -49,7 +49,7 @@ public class Main {
 
                 case 2:
                     if (dresseur.getPokemons().size() < 6) {
-                        System.out.println("Vous n'avez pas de Pokémon ! Vous devez d'abord en capturer un !");
+                        System.out.println("Vous n'avez pas assez de Pokémons ! Vous devez en avoir minimum 6 !");
                     } else {
                         System.out.println("Vous avez choisi de combattre un autre dresseur !");
                     }

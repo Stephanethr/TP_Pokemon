@@ -33,8 +33,10 @@ public class PokemonGenerator {
         String type = parts[1].trim(); // Trim pour enlever les espaces éventuels
 
         // Les autres attributs du Pokémon
-        int pc = random.nextInt(100) + 50;
-        int pv = random.nextInt(100) + 50;
+        int pc = random.nextInt(100);
+        pc += 50;
+        int pv = random.nextInt(100);
+        pv += 50;
 
         return new Pokemon(nom, type, pc, pv);
     }

@@ -10,7 +10,7 @@ Abo,Poison
 Pikachu,Electrique 
 Sabelette,Sol 
 Nidoran femelle,Poison 
-Nidoran mâle,Poison 
+Nidoran male,Poison 
 Mélofée,Normal 
 Goupix,Feu 
 Rondoudou,Normal 
