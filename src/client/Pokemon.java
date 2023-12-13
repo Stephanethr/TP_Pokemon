@@ -99,15 +99,21 @@ public class Pokemon implements Serializable {
 
         int valeur = 0;
         switch (this.evolutions.size()) {
+            // Si le Pokémon a 1 évolution, il faut 10 bonbons
             case 1:
                 valeur = 10;
                 break;
+
+            // Si le Pokémon a 2 évolutions, il faut 5 bonbons pour la première et 10 pour la deuxième
             case 2:
                 valeur = 5;
                 break;
+            
+            // Si le Pokémon a 3 évolutions (Evoli uniquement), il faut 10 bonbons
             case 3:
                 valeur = 10;
                 break;
+
             default:
                 break;
         }
@@ -142,13 +148,13 @@ public class Pokemon implements Serializable {
                 // Mise à jour du type en fonction de l'évolution
                 switch (this.nom) {
                     case "Voltali":
-                        this.type = "Electrique";
+                        this.setType("Electrique");
                         break;
                     case "Pyroli":
-                        this.type = "Feu";
+                        this.setType("Feu");
                         break;
                     case "Aquali":
-                        this.type = "Eau";
+                        this.setType("Eau");
                         break;
                     default:
                         break;
