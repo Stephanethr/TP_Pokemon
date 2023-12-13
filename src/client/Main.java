@@ -11,7 +11,7 @@ import java.io.Serializable;
 public class Main implements Serializable {
     
 
-        public static void main(String[] args) {
+    public static void main(String[] args) {
 
         String filePath = "";
         String pseudo = "";
@@ -253,5 +253,5 @@ public class Main implements Serializable {
             }
         }
     }
-    
+
 }
