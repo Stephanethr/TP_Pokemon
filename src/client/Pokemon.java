@@ -65,6 +65,7 @@ public class Pokemon implements Serializable {
         return evolutions;
     }
 
+    // Méthode pour définir les évolutions du Pokémon
     public void setEvolutions() {
         String evolutionFileName = "src\\listeEvolution.txt";
         try (BufferedReader reader = new BufferedReader(new FileReader(evolutionFileName))) {
@@ -93,53 +94,69 @@ public class Pokemon implements Serializable {
         }
     }
 
-    public void evolution() {
+    // Méthode pour vérifier le coût d'évolution du Pokémon
+    public int verifCoutEvolution() {
 
-        // vérifie si le Pokémon peut évoluer
-        if (this.evolutions.size() == 0) {
-            System.out.println("Ce Pokémon ne peut pas évoluer !");
-            return;
+        int valeur = 0;
+        switch (this.evolutions.size()) {
+            case 0:
+                valeur = 0;
+                break;
+            case 1:
+                valeur = 10;
+                break;
+            case 2:
+                valeur = 5;
+                break;
+            case 3:
+                valeur = 10;
+                break;
+            default:
+                break;
         }
 
-        // calcul du coût de l'evolution
-        if (this.evolutions.size() == 1) {
+        return valeur;
+    }
 
-            return;
-        }
+    // Méthode pour faire évoluer le Pokémon
+    public void evolution(Dresseur dresseur) {
+        // vérifie si le dresseur a assez de bonbons du type du pokemon pour faire
+        // évoluer son Pokémon et si oui, fait évoluer le Pokémon
+        if (dresseur.getNombreBonbonsParType(this.type) >= this.verifCoutEvolution()) {
+            dresseur.supprimerBonbon(this.type, this.verifCoutEvolution());
 
-        if (this.evolutions.size() == 2) {
+            // Si le Pokémon est un Evoli, il peut évoluer en 3 types différents
+            // On choisit aléatoirement l'évolution
+            if (this.nom == "Evoli") {
+                int randomEvolution = random.nextInt(this.evolutions.size());
+                this.nom = this.evolutions.get(randomEvolution);
+                this.evolutions.clear();
 
-            return;
-        }
+                switch (this.nom) {
+                    case "Voltali":
+                        this.type = "Electrique";
+                        break;
 
-        if (this.nom == "Evoli") {
-            int randomEvolution = random.nextInt(this.evolutions.size());
-            this.nom = this.evolutions.get(randomEvolution);
-            this.pc += (this.pc * 0.7);
-            this.pv += (this.pv * 0.7);
+                    case "Pyroli":
+                        this.type = "Feu";
+                        break;
 
-            switch (this.nom) {
-                case "Voltali":
-                    this.type = "Electrique";
-                    break;
+                    case "Aquali":
+                        this.type = "Eau";
+                        break;
 
-                case "Pyroli":
-                    this.type = "Feu";
-                    break;
-
-                case "Aquali":
-                    this.type = "Eau";
-                    break;
-
-                default:
-                    break;
+                    default:
+                        break;
+                }
+            } else {
+                this.nom = this.evolutions.get(0);
+                this.evolutions.remove(0);
             }
-        } else {
-            this.nom = this.evolutions.get(0);
             this.pc += (this.pc * 0.7);
             this.pv += (this.pv * 0.7);
-            this.evolutions.remove(0);
             System.out.println("Votre Pokémon a évolué en " + this.evolutions.get(0));
+        } else {
+            System.out.println("Vous n'avez pas assez de bonbons pour faire évoluer votre Pokémon");
         }
     }
 
