@@ -1,3 +1,4 @@
+package src;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -11,7 +12,7 @@ public class PokemonGenerator {
 
     private static List<String> loadPokemonInfo() {
         List<String> pokemonInfoList = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader("../pokemonsNonEvolue.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("./pokemonsNonEvolue.txt"))) {
             String line;
             while ((line = br.readLine()) != null) {
                 pokemonInfoList.add(line);
