@@ -120,12 +120,6 @@ public class Dresseur implements Serializable {
     public void afficherBonbons() {
     Map<String, Integer> bonbonsParType = this.getListeBonbonsParType();
 
-    // Parcourir la liste des bonbons pour compter leur nombre par type
-    for (Bonbon bonbon : bonbons) {
-        String type = bonbon.getType();
-        bonbonsParType.put(type, bonbonsParType.getOrDefault(type, 0) + 1);
-    }
-
     // Afficher les bonbons par type et leur compteur
     for (Map.Entry<String, Integer> entry : bonbonsParType.entrySet()) {
         String type = entry.getKey();

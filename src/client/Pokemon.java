@@ -99,9 +99,6 @@ public class Pokemon implements Serializable {
 
         int valeur = 0;
         switch (this.evolutions.size()) {
-            case 0:
-                valeur = 0;
-                break;
             case 1:
                 valeur = 10;
                 break;
@@ -132,7 +129,7 @@ public class Pokemon implements Serializable {
             // Si le Pokémon est un Evoli, il peut évoluer en 3 types différents
             // On choisit aléatoirement l'évolution
             if (this.nom == "Evoli") {
-                int randomEvolution = random.nextInt(this.evolutions.size());
+                int randomEvolution = random.nextInt(this.evolutions.size() -1);
                 this.nom = this.evolutions.get(randomEvolution);
                 this.evolutions.clear();
 

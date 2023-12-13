@@ -234,7 +234,7 @@ public class Main implements Serializable {
                     
                 case 5:
 
-                    System.out.println("Vous avez choisi de sauvegarder votre partie !");
+                    System.out.println("Sauvegarde effectuée !");
 
                     save(filePath, dresseur);
                     break;
