@@ -9,6 +9,43 @@ import java.io.Serializable;
 
 
 public class Main implements Serializable {
+
+
+    public static void save(String filePath,Dresseur dresseur){
+        try {
+            // Création du flux de sortie vers le fichier
+            FileOutputStream fileOutputStream = new FileOutputStream(filePath);
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+
+            // Enregistrement du nom du dresseur dans le fichier
+            objectOutputStream.writeObject(dresseur);
+
+            // Fermeture des flux
+            objectOutputStream.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public static void charger(String filePath,Dresseur dresseur){
+
+        try {
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filePath));
+            dresseur = (Dresseur) ois.readObject();
+            ois.close();
+            System.out.println(dresseur.toString());
+        } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (ClassNotFoundException e) {
+                        e.printStackTrace();   
+                    }
+
+
+    }
     
 
     public static void main(String[] args) {
@@ -40,19 +77,10 @@ public class Main implements Serializable {
                     reponse = sc.nextLine();
                     continue;
                 }
+
+                charger(filePath,dresseur);
                 
-                try {
-                    ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filePath));
-                    dresseur = (Dresseur) ois.readObject();
-                    ois.close();
-                    System.out.println(dresseur.toString());
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();   
-                }
+               
 
                 break;
 
@@ -65,29 +93,13 @@ public class Main implements Serializable {
 
                 filePath = "src\\sauvegarde\\" + pseudo + ".txt";
 
-                try {
-                    // Création du flux de sortie vers le fichier
-                    FileOutputStream fileOutputStream = new FileOutputStream(filePath);
-                    ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-
-                    // Enregistrement du nom du dresseur dans le fichier
-                    objectOutputStream.writeObject(dresseur);
-
-                    // Fermeture des flux
-                    objectOutputStream.close();
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                break;
+                save(filePath,dresseur);
 
             } else {
                 System.out.println("Vous n'avez pas choisi une option valide !");
                 System.out.println("Avez vous un compte ? (y/n)");
                 reponse = sc.nextLine();
             }
-            
-        }
 
         
         
@@ -188,24 +200,8 @@ public class Main implements Serializable {
                 case 5:
 
                     System.out.println("Vous avez choisi de sauvegarder votre partie !");
-                    try {
-                        // Création du flux de sortie vers le fichier
-                        FileOutputStream fileOutputStream = new FileOutputStream(filePath);
-                        ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
 
-                        // Enregistrement du nom du dresseur dans le fichier
-                        objectOutputStream.writeObject(dresseur);
-
-                        // Fermeture des flux
-                        objectOutputStream.close();
-
-
-                        System.out.println("Votre partie a bien été sauvegardée ! \n");
-                        
-
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    save(filePath, dresseur);
                     break;
 
                 case 6:
@@ -222,28 +218,17 @@ public class Main implements Serializable {
                         break;
                     }
 
-                    try {
-
-                        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filePath));
-                        dresseur = (Dresseur) ois.readObject();
-                        ois.close();
-                        System.out.println(dresseur.toString());
-                        pseudo = pseudoCharge;
-
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    } catch (ClassNotFoundException e) {
-                        e.printStackTrace();   
-                    }
+                    charger(filePath,dresseur);
+                    pseudo = pseudoCharge;
 
 
 
                     break;
 
                 case 7:
-                    System.out.println("Vous avez choisi de quitter le jeu !");
+                    System.out.println("Vous avez choisi de quitter le jeu !\n");
+                    System.out.println("Votre partie a été sauvegardée ! \n");
+                    save(filePath, dresseur);
                     sc.close(); // Ferme le scanner avant de quitter
                     System.exit(0); // Termine le programme
                     break;
@@ -255,4 +240,5 @@ public class Main implements Serializable {
         }
     }
 
+}
 }
