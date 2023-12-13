@@ -131,13 +131,13 @@ public class Pokemon implements Serializable {
     
         // Calculer le coût d'évolution
         int coutEvolution = this.verifCoutEvolution();
-        System.out.println("Coût d'évolution pour " + this.nom + ": " + coutEvolution + " bonbons.");
+        System.out.println("Coût d'évolution pour " + this.nom + ": " + coutEvolution + " bonbons. \n");
     
         // Vérifier si le dresseur a suffisamment de bonbons pour l'évolution
         if (dresseur.getNombreBonbonsParType(this.type) >= coutEvolution) {
             // Déduire les bonbons pour l'évolution
             dresseur.supprimerBonbon(this.type, coutEvolution);
-            System.out.println("Bonbons déduits pour l'évolution de " + this.nom + ".");
+            
     
             // Gérer l'évolution spécifique pour Evoli
             if (this.nom.equals("Evoli")) {
