@@ -160,7 +160,7 @@ public class Pokemon implements Serializable {
             this.pv += (this.pv * 0.7);
             System.out.println("Votre Pokémon a évolué en " + this.nom + " !");
         } else {
-            System.out.println("Vous n'avez pas assez de bonbons pour faire évoluer votre Pokémon");
+            System.out.println("Vous n'avez pas assez de bonbons pour faire évoluer " + this.nom );
         }
     }
 
