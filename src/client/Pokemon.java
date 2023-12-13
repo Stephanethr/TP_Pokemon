@@ -99,15 +99,21 @@ public class Pokemon implements Serializable {
 
         int valeur = 0;
         switch (this.evolutions.size()) {
+            // Si le Pokémon a 1 évolution, il faut 10 bonbons
             case 1:
                 valeur = 10;
                 break;
+
+            // Si le Pokémon a 2 évolutions, il faut 5 bonbons pour la première et 10 pour la deuxième
             case 2:
                 valeur = 5;
                 break;
+            
+            // Si le Pokémon a 3 évolutions (Evoli uniquement), il faut 10 bonbons
             case 3:
                 valeur = 10;
                 break;
+
             default:
                 break;
         }
@@ -126,24 +132,25 @@ public class Pokemon implements Serializable {
         if (dresseur.getNombreBonbonsParType(this.type) >= this.verifCoutEvolution()) {
             dresseur.supprimerBonbon(this.type, this.verifCoutEvolution());
 
-            // Si le Pokémon est un Evoli, il peut évoluer en 3 types différents
+            // Si le Pokémon est un Evoli, il peut évoluer en 3 pokemons différents
             // On choisit aléatoirement l'évolution
             if (this.nom == "Evoli") {
-                int randomEvolution = random.nextInt(this.evolutions.size() -1);
+                int randomEvolution = random.nextInt(this.evolutions.size());
                 this.nom = this.evolutions.get(randomEvolution);
-                this.evolutions.clear();
+                this.evolutions.remove(0);
+                this.evolutions.remove(0);
 
                 switch (this.nom) {
                     case "Voltali":
-                        this.type = "Electrique";
+                        this.setType("Electrique");
                         break;
 
                     case "Pyroli":
-                        this.type = "Feu";
+                        this.setType("Feu");
                         break;
 
                     case "Aquali":
-                        this.type = "Eau";
+                        this.setType("Eau");
                         break;
 
                     default:
