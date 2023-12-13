@@ -169,6 +169,20 @@ public class Main implements Serializable {
                             switch (choix2) {
 
                                 case 1:
+
+                                    System.out.println("Vous avez choisi d'évoluer un Pokémon ! \n");
+
+                                    System.out.println("Quel est l'ID du Pokémon que vous voulez faire évoluer ? \n");
+
+                                    int id2 = sc.nextInt();
+
+                                    sc.nextLine(); // Pour consommer la nouvelle ligne après avoir lu l'entier
+
+                                    Pokemon pokemon2 = dresseur.getPokemons().get(id2);
+
+                                    pokemon2.evolution(dresseur);
+
+                                    
                                     
                                     break;
 
