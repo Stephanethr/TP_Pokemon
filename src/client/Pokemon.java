@@ -117,49 +117,57 @@ public class Pokemon implements Serializable {
 
     // Méthode pour faire évoluer le Pokémon
     public void evolution(Dresseur dresseur) {
-        // vérifie si le dresseur a assez de bonbons du type du pokemon pour faire
-        // évoluer son Pokémon et si oui, fait évoluer le Pokémon
+        // Vérifier si le Pokémon a des évolutions possibles
         if (this.evolutions.size() == 0) {
-            System.out.println("Votre Pokémon ne peut pas évoluer");
+            System.out.println("Votre Pokémon " + this.nom + " ne peut pas évoluer.");
             return;
         }
-        if (dresseur.getNombreBonbonsParType(this.type) >= this.verifCoutEvolution()) {
-            dresseur.supprimerBonbon(this.type, this.verifCoutEvolution());
-
-            // Si le Pokémon est un Evoli, il peut évoluer en 3 types différents
-            // On choisit aléatoirement l'évolution
-            if (this.nom == "Evoli") {
-                int randomEvolution = random.nextInt(this.evolutions.size() -1);
-                this.nom = this.evolutions.get(randomEvolution);
+    
+        // Calculer le coût d'évolution
+        int coutEvolution = this.verifCoutEvolution();
+        System.out.println("Coût d'évolution pour " + this.nom + ": " + coutEvolution + " bonbons.");
+    
+        // Vérifier si le dresseur a suffisamment de bonbons pour l'évolution
+        if (dresseur.getNombreBonbonsParType(this.type) >= coutEvolution) {
+            // Déduire les bonbons pour l'évolution
+            dresseur.supprimerBonbon(this.type, coutEvolution);
+            System.out.println("Bonbons déduits pour l'évolution de " + this.nom + ".");
+    
+            // Gérer l'évolution spécifique pour Evoli
+            if (this.nom.equals("Evoli")) {
+                int randomEvolutionIndex = random.nextInt(this.evolutions.size());
+                this.nom = this.evolutions.get(randomEvolutionIndex);
                 this.evolutions.clear();
-
+    
+                // Mise à jour du type en fonction de l'évolution
                 switch (this.nom) {
                     case "Voltali":
                         this.type = "Electrique";
                         break;
-
                     case "Pyroli":
                         this.type = "Feu";
                         break;
-
                     case "Aquali":
                         this.type = "Eau";
                         break;
-
                     default:
                         break;
                 }
             } else {
+                // Pour les autres Pokémon, prendre la première évolution disponible
                 this.nom = this.evolutions.get(0);
                 this.evolutions.remove(0);
             }
-            this.pc += (this.pc * 0.7);
-            this.pv += (this.pv * 0.7);
+    
+            // Mise à jour des stats du Pokémon après l'évolution
+            this.pc += (int) (this.pc * 0.7); // Augmentation de 70% des PC
+            this.pv += (int) (this.pv * 0.7); // Augmentation de 70% des PV
             System.out.println("Votre Pokémon a évolué en " + this.nom + " !");
         } else {
-            System.out.println("Vous n'avez pas assez de bonbons pour faire évoluer " + this.nom );
+            System.out.println("Vous n'avez pas assez de bonbons pour faire évoluer " + this.nom);
         }
     }
+    
 
     public int calculerDegats() {
         return (int) (this.pc * 0.1);

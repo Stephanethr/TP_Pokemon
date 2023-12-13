@@ -3,13 +3,17 @@ package src.client;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Iterator;
+
+
+
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
+
 
 public class Dresseur implements Serializable {
 
@@ -98,15 +102,21 @@ public class Dresseur implements Serializable {
 
     // Supprime un nombre de bonbons donné d'un type donné
     public void supprimerBonbon(String typeBonbon, int quantite) {
-
-        for (int i = 0; i < quantite; i++) {
-            if (bonbons.get(i).getType().equals(typeBonbon)) {
-                bonbons.remove(i);
+        Iterator<Bonbon> iterator = bonbons.iterator();
+        int compteur = 0;
+    
+        while (iterator.hasNext()) {
+            Bonbon bonbon = iterator.next();
+            if (bonbon.getType().equals(typeBonbon)) {
+                iterator.remove();
+                compteur++;
+                if (compteur >= quantite) {
+                    break; // Arrête la boucle une fois la quantité requise supprimée
+                }
             }
         }
-
     }
-
+    
     // Affiche les pokémons du dresseur
     public void afficherPokemons() {
         for (int i = 0; i < pokemons.size(); i++) {

@@ -140,6 +140,7 @@ public class Main implements Serializable {
 
                         
                             default:
+                                System.out.println("Vous n'avez pas choisi une option valide ! \n");
                                 break;
                         }
 
