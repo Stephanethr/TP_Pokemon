@@ -73,10 +73,13 @@ public class Dresseur implements Serializable{
     }
 
     public void afficherPokemons() {
-        for (Pokemon pokemon : pokemons) {
+        for (int i = 0; i < pokemons.size(); i++) {
+            Pokemon pokemon = pokemons.get(i);
+            System.out.println("ID: " + i);
             System.out.println(pokemon.toString() + "\n");
         }
     }
+    
 
     public void afficherBonbons() {
     Map<String, Integer> bonbonsParType = new HashMap<>();
