@@ -35,55 +35,41 @@ public class Main implements Serializable {
     public static void main(String[] args) {
 
         String filePath = "";
+        String reponse = "";
         String pseudo = "";
         Dresseur dresseur = null;
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Bienvenue dans le monde des Pokémons !");
 
-        
-        System.out.println("Avez vous un compte ? (y/n)");
-        String reponse = sc.nextLine();
 
         while (true) {
+            System.out.println("Avez vous un compte ? (y/n)");
+            reponse = sc.nextLine();
+
             if (reponse.equals("y")) {
-
-                System.out.println("quel est le pseudo de votre sauvegarde ?");
-
+                System.out.println("Quel est le pseudo de votre sauvegarde ?");
                 pseudo = sc.nextLine();
-
-
                 filePath = "src\\sauvegarde\\" + pseudo + ".txt";
 
-                if (!new File(filePath).exists()) {
+                if (new File(filePath).exists()) {
+                    dresseur = Dresseur.charger(filePath);
+                    break;
+                } else {
                     System.out.println("Ce pseudo n'existe pas !");
-                    System.out.println("Avez vous un compte ? (y/n)");
-                    reponse = sc.nextLine();
-                    continue;
                 }
-
-                dresseur = Dresseur.charger(filePath);
-                
-               
-
-                
-
             } else if (reponse.equals("n")) {
                 System.out.println("Entrez votre pseudo :");
-
                 pseudo = sc.nextLine();
-                
                 dresseur = new Dresseur(pseudo);
-
                 filePath = "src\\sauvegarde\\" + pseudo + ".txt";
-
-                save(filePath,dresseur);
-
+                save(filePath, dresseur);
+                break;
             } else {
                 System.out.println("Vous n'avez pas choisi une option valide !");
-                System.out.println("Avez vous un compte ? (y/n)");
-                reponse = sc.nextLine();
             }
+        }
+
 
         
         
@@ -276,5 +262,4 @@ public class Main implements Serializable {
         }
     }
 
-}
 }
