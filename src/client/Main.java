@@ -100,9 +100,10 @@ public class Main implements Serializable {
             System.out.println("1. Ouvrir une lootbox");
             System.out.println("2. Combattre un autre dresseur");
             System.out.println("3. Voir ses pokemons");
-            System.out.println("4. Sauvegarder votre partie");
-            System.out.println("5. Charger une partie");
-            System.out.println("6. Quitter le jeu \n");
+            System.out.println("4. Voir ses bonbons");
+            System.out.println("5. Sauvegarder votre partie");
+            System.out.println("6. Charger une partie");
+            System.out.println("7. Quitter le jeu \n");
 
             int choix = sc.nextInt();
             sc.nextLine(); // Pour consommer la nouvelle ligne après avoir lu l'entier
@@ -112,9 +113,15 @@ public class Main implements Serializable {
                 case 1:
                     System.out.println("Vous avez choisi d'ouvrir une lootbox ! \n");
                     Pokemon pokemon = PokemonGenerator.generateRandomPokemon();
-                    System.out.println(pokemon.toString()); // Affiche les détails du Pokémon
+                    System.out.println(pokemon.toString() + "\n"); // Affiche les détails du Pokémon
 
-                    System.out.println("Voulez-vous le garder ? (y/n) \n");
+                    Bonbon bonbon = new Bonbon(pokemon.getType());
+                    dresseur.ajouterBonbon(bonbon);
+
+                    System.out.println("Vous avez reçu un bonbon de type " + bonbon.getType() + "\n");
+
+
+                    System.out.println("Voulez-vous garder ce Pokemon ? (y/n) \n");
                     reponse = sc.nextLine();
                     
                         if (reponse.equals("y")) {
@@ -123,7 +130,7 @@ public class Main implements Serializable {
 
                         } else if (reponse.equals("n")) {
 
-                            System.out.println("Vous avez choisi de ne pas garder ce Pokémon ! \n");
+                            System.out.println("Vous avez choisi de jeter " + pokemon.getNom() + " à la poubelle ! \n");
                            
                         } else {
                             System.out.println("Vous n'avez pas choisi une option valide !");
@@ -157,9 +164,27 @@ public class Main implements Serializable {
                     }
 
                     break;
-                    
-                    
+
                 case 4:
+
+                    System.out.println("Vous avez choisi de voir vos bonbons !\n");
+                    if (dresseur.bonbons.size() == 0 ) {
+
+                        System.out.println("Vous n'avez pas de bonbons ! \n");
+
+                    } else {
+
+                        System.out.println("Voici vos bonbons :");
+                        dresseur.afficherBonbons();
+                        System.out.println("appuyez sur entrée pour continuer \n");
+                        sc.nextLine();
+                    
+                    }
+
+                    break;
+                    
+                    
+                case 5:
 
                     System.out.println("Vous avez choisi de sauvegarder votre partie !");
                     try {
@@ -182,7 +207,7 @@ public class Main implements Serializable {
                     }
                     break;
 
-                case 5:
+                case 6:
                     System.out.println("Vous avez choisi de charger une partie ! \n");
 
                     System.out.println("quel est le pseudo de votre sauvegarde ?");
@@ -216,7 +241,7 @@ public class Main implements Serializable {
 
                     break;
 
-                case 6:
+                case 7:
                     System.out.println("Vous avez choisi de quitter le jeu !");
                     sc.close(); // Ferme le scanner avant de quitter
                     System.exit(0); // Termine le programme
