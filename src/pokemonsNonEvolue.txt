@@ -65,7 +65,7 @@ Tauros,Normal
 Magicarpe,Eau 
 Lokhlass,Eau
 Métamorph,Normal 
-Evoli,Normal 
+Evoli,Normal
 Porygon,Normal 
 Amonita,Eau 
 Kabuto,Roche

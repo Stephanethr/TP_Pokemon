@@ -1,4 +1,8 @@
 package src.client;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -11,20 +15,17 @@ public class Pokemon {
     private int pv;
     private static final Random random = new Random();
 
-    private ArrayList<Pokemon> evolutions = new ArrayList<Pokemon>();
+    private ArrayList<String> evolutions = new ArrayList<String>();
 
     public Pokemon(String nom, String type) {
         this.nom = nom;
         this.type = type;
         this.pc = random.nextInt(100) + 50;
         this.pv = random.nextInt(100) + 50;
+        this.setEvolutions();
     }
 
     // Getters et Setters pour chaque attribut
-
-    public ArrayList<Pokemon> getEvolutions() {
-        return evolutions;
-    }
 
     public String getNom() {
         return nom;
@@ -40,10 +41,6 @@ public class Pokemon {
 
     public int getpc() {
         return pc;
-    }
-
-    public void setEvolutions(ArrayList<Pokemon> evolutions) {
-        this.evolutions = evolutions;
     }
 
     public void setNom(String nom) {
@@ -63,6 +60,39 @@ public class Pokemon {
         this.pv = pv;
     }
 
+    public ArrayList<String> getEvolutions() {
+        return evolutions;
+    }
+
+    public void setEvolutions() {
+        String evolutionFileName = "src\\listeEvolution.txt";
+        try (BufferedReader reader = new BufferedReader(new FileReader(evolutionFileName))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(":");
+                if (parts[0].equals(this.nom)) {
+                    for (int i = 1; i < parts.length; i++) {
+                        String[] evolutionParts = parts[i].split(",");
+                        System.out.println("nom récupérés : " + evolutionParts[0] + " " + evolutionParts[1] + " " + evolutionParts[2]);
+                        String evolution1 = evolutionParts[0];
+                        this.evolutions.add(evolution1);
+                        if (evolutionParts.length > 1) {
+                            String evolution2 = evolutionParts[1];
+                            this.evolutions.add(evolution2);
+                        }
+                        if (evolutionParts.length > 2) {
+                            String evolution3 = evolutionParts[2];
+                            this.evolutions.add(evolution3);
+                        }
+
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace(); // Handle the exception according to your needs
+        }
+    }
+
     // Méthode pour afficher les informations du Pokémon
     @Override
     public String toString() {
@@ -71,7 +101,7 @@ public class Pokemon {
                 "type='" + type + '\'' +
                 ", pc=" + pc +
                 ", pv=" + pv +
-
+                ", evolutions=" + evolutions +
                 '}';
     }
 }

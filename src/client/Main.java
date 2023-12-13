@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Main {
 
-        public static void main(String[] args) {
+    public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
 
@@ -15,7 +15,8 @@ public class Main {
 
         System.out.println("Bonjour " + pseudo + "!");
 
-        System.out.println("Vous êtes un nouveau dresseur Pokémon et vous allez devoir vous battre contre des Pokémon sauvages pour les capturer !");
+        System.out.println(
+                "Vous êtes un nouveau dresseur Pokémon et vous allez devoir vous battre contre des Pokémon sauvages pour les capturer !");
 
         while (true) {
             System.out.println("Que voulez-vous faire ?");
@@ -60,14 +61,13 @@ public class Main {
                     dresseur.afficherPokemons();
                     System.out.println("appuyez sur entrée pour continuer");
                     sc.nextLine();
-                    
+
                     break;
 
                 case 4:
-                
+
                     System.out.println("Vous avez choisi de sauvegarder votre partie !");
                     break;
-                    
 
                 case 5:
                     System.out.println("Vous avez choisi de charger une partie !");
@@ -85,5 +85,5 @@ public class Main {
             }
         }
     }
-    
+
 }
