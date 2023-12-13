@@ -1,5 +1,5 @@
 Bulbizarre,Plante
-Salamèche,Feu 
+Salameche,Feu 
 Carapuce,Eau 
 Chenipan,Insecte 
 Aspicot,Insecte
@@ -11,7 +11,7 @@ Pikachu,Electrique
 Sabelette,Sol 
 Nidoran femelle,Poison 
 Nidoran male,Poison 
-Mélofée,Normal 
+Melofee,Normal 
 Goupix,Feu 
 Rondoudou,Normal 
 Nosferapti,Vol
@@ -21,17 +21,17 @@ Mimitoss,Insecte
 Taupiqueur,Sol 
 Miaouss,Normal 
 Psykokwak,Eau 
-Férosinge,Combat 
+Ferosinge,Combat 
 Caninos,Feu 
 Ptitard,Eau 
 Abra,Psy 
 Machoc,Combat 
-Chétiflor,Plante 
+Chetiflor,Plante 
 Tentacouille,Eau
 Racaillou,Roche 
 Ponyta,Feu 
 Ramoloss,Psy 
-Magnéti,Electrique
+Magneti,Electrique
 Canarticho,Normal
 Doduo,Normal
 Otaria,Eau 
@@ -56,7 +56,7 @@ Hypotrempe,Eau
 Poissirène,Eau 
 Stari,Eau 
 M.Mime,Psy 
-Insécateur,Insecte 
+Insecateur,Insecte 
 Lippoutou,Glace
 Elektek,Electrique 
 Magmar,Feu 
@@ -64,12 +64,12 @@ Scarabrute,Insecte
 Tauros,Normal 
 Magicarpe,Eau 
 Lokhlass,Eau
-Métamorph,Normal 
+Metamorph,Normal 
 Evoli,Normal
 Porygon,Normal 
 Amonita,Eau 
 Kabuto,Roche
-Ptéra,Vol 
+Ptera,Vol 
 Ronflex,Normal 
 Artikodin,Glace
 Electhor,Electrique
