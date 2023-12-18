@@ -520,6 +520,11 @@ public class Pokemon implements Serializable {
 
     }
 
+    // Méthode pour vérifier si le Pokémon est KO
+    public boolean estKO() {
+        return this.pv <= 0;
+    }
+
     // Méthode pour afficher les informations du Pokémon
     @Override
     public String toString() {
