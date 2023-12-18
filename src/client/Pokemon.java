@@ -14,6 +14,7 @@ public class Pokemon implements Serializable {
     private String type;
     private int pc;
     private int pv;
+    private boolean estVivant = true;
     private static final Random random = new Random();
 
     private ArrayList<String> evolutions = new ArrayList<String>();
@@ -518,6 +519,14 @@ public class Pokemon implements Serializable {
                 pokemonAdverse.pv -= degatsInitiaux;
         }
 
+    }
+
+    // Méthode pour vérifier si le Pokémon est KO
+    public void estKO() {
+        this.estVivant = this.pv <= 0;
+        if (this.estVivant) {
+            System.out.println(this.nom + " est KO !");
+        }
     }
 
     // Méthode pour afficher les informations du Pokémon
