@@ -61,7 +61,12 @@ public class AcceptClient extends Thread {
                 
                 // Vérifier s'il y a deux joueurs dans la liste
                 if (joueurs.size() == 2) {
+
                     // Démarrez le combat entre les deux joueurs ici
+                    System.out.println("Le combat commence !");
+                    server.combat(joueurs.get(0), joueurs.get(1));
+
+
                     // Vous pouvez accéder aux joueurs par joueurs.get(0) et joueurs.get(1)
                 }
             } catch (IOException | ClassNotFoundException e) {
