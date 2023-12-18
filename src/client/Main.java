@@ -165,39 +165,27 @@ public class Main implements Serializable {
                         dresseur.afficherPokemonsEquipe();
 
                         try {
-                            // Établir une connexion avec le serveur
-                            Socket socket = new Socket("localhost", 2000);
-                            ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
-                            BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                                // Établir une connexion avec le serveur
+                                Socket socket = new Socket("localhost", 2000);
+                                ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+                                BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
-                            // Envoyer l'objet Dresseur au serveur
-                            oos.writeObject(dresseur);
-                            oos.flush();
+                                // Envoyer l'objet Dresseur au serveur
+                                oos.writeObject(dresseur);
+                                oos.flush();
 
-                            // Boucle pour écouter les messages du serveur
-                            String messageDuServeur;
-                            while (true) {
-
-                                    messageDuServeur = br.readLine();
-                                    System.out.println("Message du serveur: " + messageDuServeur);
-
-                                    if (messageDuServeur.equals("Que voulez vous faire")){
-
-                                        
-                                        int choixCombat = sc.nextInt();
-                                        sc.nextLine(); // Pour consommer la nouvelle ligne après avoir lu l'entier
-                                        System.out.println("1. Attaquer");
-                                        System.out.println("2. Changer de pokemon");
-                                        
-                                        oos.writeInt(choixCombat);
-                                        oos.flush();
-
-                                    }
-                            
-                                    // Si le message est "fin", sortir de la boucle
-                                    if (messageDuServeur.equals("fin")) {
+                                // Lire les messages du serveur
+                                String message;
+                                while ((message = br.readLine()) != null) {
+                                    System.out.println(message);
+                                    if (message.equals("fin")) {
                                         break;
                                     }
+                                }
+
+                            } catch (IOException e) {
+
+
                                     
 
                             }
@@ -205,14 +193,9 @@ public class Main implements Serializable {
                             // Nettoyage après la réception du message "fin"
                             dresseur.listCombat.clear();
 
-                            // Fermer les ressources
-                            br.close();
-                            oos.close();
-                            socket.close();
-
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                            System.out.println("appuyez sur entrée pour continuer \n");
+                            sc.nextLine();
+                            
 
                     }
                     break;

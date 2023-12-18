@@ -14,7 +14,7 @@ public class Combat {
 
 
 
-    public void combat() {
+    public String combat() {
 
         while (j1.getPokemonsEquipe().size() > 0 && j2.getPokemonsEquipe().size() > 0) {
 
@@ -51,9 +51,9 @@ public class Combat {
         }
 
         if (j1.getPokemonsEquipe().size() == 0) {
-            System.out.println(j2.getPseudo() + " a gagné !");
+            return j2.getPseudo();
         } else {
-            System.out.println(j1.getPseudo() + " a gagné !");
+            return j1.getPseudo();
         }
 
 
