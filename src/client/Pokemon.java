@@ -177,7 +177,7 @@ public class Pokemon implements Serializable {
     }
 
     // Méthode pour faire combattre le Pokémon
-    public void combat(Pokemon pokemonAdverse) {
+    public void attaque(Pokemon pokemonAdverse) {
         int degatsInitiaux = (int) (this.pc * 0.1);
 
         // Calcul des dégâts en fonction du type du Pokémon
