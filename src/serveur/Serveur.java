@@ -1,3 +1,4 @@
+//fichier Serveur.java
 package src.serveur;
 
 import java.net.ServerSocket;
@@ -8,6 +9,8 @@ public class Serveur {
             server = new ServerSocket(2000);
             AcceptClient client = new AcceptClient(server);
             client.start();
+
+            
         }catch(Exception e){
             System.out.println("Erreur : " + e);
         }

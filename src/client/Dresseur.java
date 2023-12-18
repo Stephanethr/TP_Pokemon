@@ -4,15 +4,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Iterator;
-
-
-
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
+import java.lang.reflect.Array;
 
 
 public class Dresseur implements Serializable {
@@ -24,6 +21,7 @@ public class Dresseur implements Serializable {
     private String pseudo;
     ArrayList<Pokemon> pokemons = new ArrayList<Pokemon>();
     ArrayList<Bonbon> bonbons = new ArrayList<Bonbon>();
+    ArrayList<Pokemon> listCombat = new ArrayList<Pokemon>();
 
     public Dresseur(String pseudo) {
 
@@ -35,6 +33,10 @@ public class Dresseur implements Serializable {
 
     public String getPseudo() {
         return pseudo;
+    }
+
+    public ArrayList<Pokemon> getPokemonsEquipe() {
+        return listCombat;
     }
 
     public void setPseudo(String pseudo) {
@@ -56,6 +58,34 @@ public class Dresseur implements Serializable {
 
     public void setBonbons(ArrayList<Bonbon> bonbons) {
         this.bonbons = bonbons;
+    }
+
+   public void ajouterPokemonEquipe(int id) {
+        if (listCombat.size() == 6) {
+            System.out.println("Vous avez déjà 6 pokémons dans votre équipe de combat");
+            return;
+        }
+        if (id == listCombat.size()) {
+            System.out.println("Vous avez déjà ajouté ce pokémon à votre équipe de combat");
+            return;
+        }
+        if (id >= 0 && id < pokemons.size()) {
+            Pokemon pokemon = pokemons.get(id);
+            listCombat.add(pokemon);
+            System.out.println("Vous avez ajouté " + pokemon.getNom() + " à votre équipe de combat");
+        } else {
+            System.out.println("ID invalide. Aucun Pokémon n'a été ajouté.");
+        }
+
+        
+    }
+
+    public void afficherPokemonsEquipe() {
+        for (int i = 0; i < listCombat.size(); i++) {
+            Pokemon pokemon = listCombat.get(i);
+            System.out.println("ID: " + i);
+            System.out.println(pokemon.toString() + "\n");
+        }
     }
 
     // ----------- Méthodes classe Dresseur -------------------

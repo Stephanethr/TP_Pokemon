@@ -1,7 +1,9 @@
 package src.client;
 
 import java.io.*;
+import java.net.Socket;
 import java.util.Scanner;
+
 
 public class Main implements Serializable {
 
@@ -29,6 +31,7 @@ public class Main implements Serializable {
         String pseudo = "";
         Dresseur dresseur = null;
         Scanner sc = new Scanner(System.in);
+        
 
         System.out.println("Bienvenue dans le monde des Pokémons !");
 
@@ -149,9 +152,72 @@ public class Main implements Serializable {
 
                     case 2:
                         if (dresseur.getPokemons().size() < 6) {
+
+
                             System.out.println("Vous n'avez pas assez de Pokémons ! Vous devez en avoir minimum 6 !\n");
+
+
                         } else {
+
                             System.out.println("Vous avez choisi de combattre un autre dresseur !\n");
+
+                            System.out.println("composez votre équipe de 6 pokemons !\n");
+
+                            //demande de ajouter des pokemons a l'equipe jusqu'a avoir 6 pokemons pour le combat
+
+                            while (dresseur.getPokemonsEquipe().size() < 6) {
+                                
+                           
+
+                                dresseur.afficherPokemons();
+
+                                System.out.println("Quel est l'ID du Pokémon que vous voulez ajouter à votre équipe ? \n");
+
+                                int id = sc.nextInt();
+                                sc.nextLine(); // Pour consommer la nouvelle ligne après avoir lu l'entier
+
+                                dresseur.ajouterPokemonEquipe(id);
+
+                            }
+
+                            System.out.println("Voici votre équipe : \n");
+
+                            dresseur.afficherPokemonsEquipe();
+
+                            
+                            try {
+                                // Établir une connexion avec le serveur
+                                Socket socket = new Socket("adresse_du_serveur", 2000);
+                                ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+                                BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                            
+                                // Envoyer l'objet Dresseur au serveur
+                                oos.writeObject(dresseur);
+                                oos.flush();
+
+
+
+                                String messageDuServeur = br.readLine();
+
+                                while (messageDuServeur != "fin") {
+                                    
+                                    // Lire le message du serveur
+                               
+                                    System.out.println("Message du serveur: " + messageDuServeur);
+                                    messageDuServeur = br.readLine();
+
+                                }
+                            
+                                // Fermer les ressources
+                                br.close();
+                                oos.close();
+                                socket.close();
+                            
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
+
                         }
                         break;
 
