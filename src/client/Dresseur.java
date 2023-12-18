@@ -58,34 +58,6 @@ public class Dresseur implements Serializable {
         this.bonbons = bonbons;
     }
 
-   public void ajouterPokemonEquipe(int id) {
-        if (listCombat.size() == 6) {
-            System.out.println("Vous avez déjà 6 pokémons dans votre équipe de combat");
-            return;
-        }
-        if (id == listCombat.size()) {
-            System.out.println("Vous avez déjà ajouté ce pokémon à votre équipe de combat");
-            return;
-        }
-        if (id >= 0 && id < pokemons.size()) {
-            Pokemon pokemon = pokemons.get(id);
-            listCombat.add(pokemon);
-            System.out.println("Vous avez ajouté " + pokemon.getNom() + " à votre équipe de combat");
-        } else {
-            System.out.println("ID invalide. Aucun Pokémon n'a été ajouté.");
-        }
-
-        
-    }
-
-    public void afficherPokemonsEquipe() {
-        for (int i = 0; i < listCombat.size(); i++) {
-            Pokemon pokemon = listCombat.get(i);
-            System.out.println("ID: " + i);
-            System.out.println(pokemon.toString() + "\n");
-        }
-    }
-
     // ----------- Méthodes classe Dresseur -------------------
 
     // Retourne une liste de bonbons par type
@@ -163,6 +135,33 @@ public class Dresseur implements Serializable {
             String type = entry.getKey();
             int compteur = entry.getValue();
             System.out.println(type + " (x" + compteur + ")");
+        }
+    }
+
+    public void ajouterPokemonEquipe(int id) {
+        if (listCombat.size() == 6) {
+            System.out.println("Vous avez déjà 6 pokémons dans votre équipe de combat");
+            return;
+        }
+        if (id == listCombat.size()) {
+            System.out.println("Vous avez déjà ajouté ce pokémon à votre équipe de combat");
+            return;
+        }
+        if (id >= 0 && id < pokemons.size()) {
+            Pokemon pokemon = pokemons.get(id);
+            listCombat.add(pokemon);
+            System.out.println("Vous avez ajouté " + pokemon.getNom() + " à votre équipe de combat");
+        } else {
+            System.out.println("ID invalide. Aucun Pokémon n'a été ajouté.");
+        }
+
+    }
+
+    public void afficherPokemonsEquipe() {
+        for (int i = 0; i < listCombat.size(); i++) {
+            Pokemon pokemon = listCombat.get(i);
+            System.out.println("ID: " + i);
+            System.out.println(pokemon.toString() + "\n");
         }
     }
 
