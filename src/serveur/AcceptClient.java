@@ -59,7 +59,7 @@ public class AcceptClient extends Thread {
             System.out.println("rentre dans le if   ");
             Combat combat = new Combat(j1, j2, this);
             String winner = combat.combat();
-            sendUpdateToClients("Le gagnant est : " + winner);
+            
         }
         System.out.println("Fin de la méthode startCombat");    
 
