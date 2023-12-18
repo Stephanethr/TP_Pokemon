@@ -67,19 +67,19 @@ public class Main implements Serializable {
 
                 switch (choix) {
 
-                    case 1:
+                    case 1 :
                         System.out.println("Vous avez choisi d'ouvrir une lootbox ! \n");
 
-                        System.out.println("Que voulez vous generer : \n");
+                        // System.out.println("Que voulez vous generer : \n");
 
-                        System.out.println("1. Un Pokémon");
-                        System.out.println("2. Plusieurs Pokémons \n");
+                        // System.out.println("1. Un Pokémon");
+                        // System.out.println("2. Plusieurs Pokémons \n");
 
-                        int choix3 = sc.nextInt();
-                        sc.nextLine(); // Pour consommer la nouvelle ligne après avoir lu l'entier
+                        // int choix3 = sc.nextInt();
+                        // sc.nextLine(); // Pour consommer la nouvelle ligne après avoir lu l'entier
 
-                        switch (choix3) {
-                            case 1:
+                        // switch (choix3) {
+                        //     case 1:
 
                                 Pokemon pokemon = PokemonGenerator.generateRandomPokemon();
                                 System.out.println(pokemon.toString() + "\n"); // Affiche les détails du Pokémon
@@ -91,44 +91,50 @@ public class Main implements Serializable {
 
                                 System.out.println("Voulez-vous garder ce Pokemon ? (y/n) \n");
                                 reponse = sc.nextLine();
+                                
 
                                 if (reponse.equals("y")) {
                                     dresseur.ajouterPokemon(pokemon);
                                     System.out.println("Vous avez choisi de garder ce Pokémon ! \n");
+                                    break;
 
                                 } else if (reponse.equals("n")) {
 
                                     System.out.println("Vous avez choisi de jeter " + pokemon.getNom() + " à la poubelle ! \n");
+                                    break;
 
                                 } else {
                                     System.out.println("Vous n'avez pas choisi une option valide !");
                                     System.out.println("Voulez-vous le garder ? (y/n)");
-                                    reponse = sc.nextLine();
+                                   
                                 }
 
                                 break;
+                                
 
-                            case 2:
+                        //     case 2:
 
-                                System.out.println("Vous avez choisi de générer pleins de pokemons !\n");
-                                System.out.println("Combien de pokemons voulez vous générer ?\n");
-                                int nb = sc.nextInt();
-                                for (int i = 0; i < nb; i++) {
-                                    Pokemon pokGen = PokemonGenerator.generateRandomPokemon();
-                                    System.out.println(pokGen.toString() + "\n"); // Affiche les détails du Pokémon
-                                    Bonbon bonbGen = new Bonbon(pokGen.getType());
-                                    dresseur.ajouterBonbon(bonbGen);
-                                    dresseur.ajouterPokemon(pokGen);
-                                }
-                                break;
+                        //         System.out.println("Vous avez choisi de générer pleins de pokemons !\n");
+                        //         System.out.println("Combien de pokemons voulez vous générer ?\n");
+                        //         int nb = sc.nextInt();
+                        //         sc.nextLine(); // Pour consommer la nouvelle ligne après avoir lu l'entier
+                        //         for (int i = 0; i < nb; i++) {
+                        //             Pokemon pokGen = PokemonGenerator.generateRandomPokemon();
+                        //             System.out.println(pokGen.toString() + "\n"); // Affiche les détails du Pokémon
+                        //             Bonbon bonbGen = new Bonbon(pokGen.getType());
+                        //             dresseur.ajouterBonbon(bonbGen);
+                        //             dresseur.ajouterPokemon(pokGen);
+                        //         }
+                        //         break;
 
                                 
 
                         
-                            default:
-                                System.out.println("Vous n'avez pas choisi une option valide ! \n");
-                                break;
-                        }
+                        //     default:
+                        //         System.out.println("Vous n'avez pas choisi une option valide ! \n");
+                        //         break;
+                            
+                        // }
 
 
                         
@@ -142,55 +148,59 @@ public class Main implements Serializable {
 
                         } else {
 
-                            System.out.println("Vous avez choisi de combattre un autre dresseur !\n");
+                            System.out.println("Vous avez choisi de combattre un autre dresseur !");
+                            System.out.println("Composez votre équipe de 6 pokemons !");
 
-                            System.out.println("composez votre équipe de 6 pokemons !\n");
-
-                            //demande de ajouter des pokemons a l'equipe jusqu'a avoir 6 pokemons pour le combat
+                            dresseur.afficherPokemons();
 
                             while (dresseur.getPokemonsEquipe().size() < 6) {
-                                
-                           
+                                System.out.println("Quel est l'ID du Pokémon que vous voulez ajouter à votre équipe ? ");
 
-                                dresseur.afficherPokemons();
+                                try {
+                                    int id = Integer.parseInt(sc.nextLine().trim());
+                                    if (id >= 0 && id < dresseur.getPokemons().size()) {
+                                        dresseur.ajouterPokemonEquipe(id);
+                                    } else {
+                                        System.out.println("ID invalide. Veuillez entrer un ID correct.");
+                                    }
+                                } catch (NumberFormatException e) {
+                                    System.out.println("Veuillez entrer un nombre valide.");
+                                }
 
-                                System.out.println("Quel est l'ID du Pokémon que vous voulez ajouter à votre équipe ? \n");
-
-                                int id = sc.nextInt();
-                                sc.nextLine(); // Pour consommer la nouvelle ligne après avoir lu l'entier
-
-                                dresseur.ajouterPokemonEquipe(id);
-
+                                // Afficher l'équipe actuelle et demander plus de Pokémon si nécessaire
+                                if (dresseur.getPokemonsEquipe().size() < 6) {
+                                    System.out.println("Votre équipe actuelle contient " + dresseur.getPokemonsEquipe().size() + " Pokémon(s).");
+                                    dresseur.afficherPokemonsEquipe();
+                                }
                             }
 
-                            System.out.println("Voici votre équipe : \n");
-
+                            System.out.println("\n Voici votre équipe complète : ");
                             dresseur.afficherPokemonsEquipe();
-
                             
                             try {
                                 // Établir une connexion avec le serveur
-                                Socket socket = new Socket("adresse_du_serveur", 2000);
+                                Socket socket = new Socket("localhost", 2000);
                                 ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
                                 BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                             
                                 // Envoyer l'objet Dresseur au serveur
                                 oos.writeObject(dresseur);
                                 oos.flush();
-
-
-
-                                String messageDuServeur = br.readLine();
-
-                                while (messageDuServeur != "fin") {
-                                    
-                                    // Lire le message du serveur
-                               
+                            
+                                // Boucle pour écouter les messages du serveur
+                                String messageDuServeur;
+                                while ((messageDuServeur = br.readLine()) != null) {
                                     System.out.println("Message du serveur: " + messageDuServeur);
-                                    messageDuServeur = br.readLine();
-
+                            
+                                    // Si le message est "fin", sortir de la boucle
+                                    if (messageDuServeur.equals("fin")) {
+                                        break;
+                                    }
                                 }
                             
+                                // Nettoyage après la réception du message "fin"
+                                dresseur.listCombat.clear();
+                                
                                 // Fermer les ressources
                                 br.close();
                                 oos.close();
@@ -199,6 +209,7 @@ public class Main implements Serializable {
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
+                            
 
 
                         }
