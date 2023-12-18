@@ -23,7 +23,7 @@ public class Pokemon implements Serializable {
         this.nom = nom;
         this.type = type;
         this.pc = random.nextInt(800) + 1;
-        this.pv = random.nextInt(100) + 20;
+        this.pv = random.nextInt(100) + 50;
         this.setEvolutions();
     }
 

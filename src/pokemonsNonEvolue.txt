@@ -53,7 +53,7 @@ Leveinard,Normal
 Saquedeneu,Plante 
 Kangourex,Normal 
 Hypotrempe,Eau 
-Poissirène,Eau 
+Poissirene,Eau 
 Stari,Eau 
 M.Mime,Psy 
 Insecateur,Insecte 
