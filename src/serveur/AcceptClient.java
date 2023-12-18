@@ -35,9 +35,11 @@ public class AcceptClient extends Thread {
                     out.println("Veuillez patienter, en attente d'un autre joueur...");
                 } else {
                     out.println("Un autre joueur est connecté. Le combat va commencer !");
+                    out.println(joueurs.get(0).getPseudo() + " VS " + joueurs.get(1).getPseudo() + "\n");
+                    run();
                 }
 
-                new ClientHandler(socket, out).run();
+                new ClientHandler(socket, out).start();
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -54,6 +56,10 @@ public class AcceptClient extends Thread {
         }
 
         public void run() {
+
+            Dresseur j1 = joueurs.get(0);
+            Dresseur j2 = joueurs.get(1);
+
             try {
                 ObjectInputStream in = new ObjectInputStream(clientSocket.getInputStream());
                 Dresseur dresseur = (Dresseur) in.readObject();
@@ -63,8 +69,52 @@ public class AcceptClient extends Thread {
                 if (joueurs.size() == 2) {
 
                     // Démarrez le combat entre les deux joueurs ici
-                    System.out.println("Le combat commence !");
-                    server.combat(joueurs.get(0), joueurs.get(1));
+                    out.println("Le combat commence !");
+                    out.println("Joueur 1: " + joueurs.get(0).getPseudo() + " VS " + joueurs.get(1).getPseudo() + "\n");
+
+                    while (j1.getPokemonsEquipe().size() > 0 && j2.getPokemonsEquipe().size() > 0) {
+
+                        out.println(j1.getPseudo() + " envoie " + j1.getPokemonsEquipe().get(0).getNom() + " ! \n");
+            
+                        out.println(j2.getPseudo() + " envoie " + j2.getPokemonsEquipe().get(0).getNom() + " ! \n");
+            
+                        j1.getPokemonsEquipe().get(0).combat(j2.getPokemonsEquipe().get(0));
+            
+                        if(j2.getPokemonsEquipe().get(0).getEstVivant() == false){
+            
+                            out.println(j2.getPokemonsEquipe().get(0).getNom() + " agonise sur le sol  \n");
+                            j2.getPokemonsEquipe().remove(0);
+            
+                        } 
+                        else{
+                            out.println(j2.getPokemonsEquipe().get(0).getPv() + " pv restant \n");
+                        }
+            
+                        j2.getPokemons().get(0).combat(j1.getPokemonsEquipe().get(0));
+            
+                        if(j1.getPokemonsEquipe().get(0).getEstVivant() == false){
+            
+                            out.println(j1.getPokemonsEquipe().get(0).getNom() + " agonise sur le sol  \n");
+                            j1.getPokemonsEquipe().remove(0);
+            
+                        }
+                        else{
+                            out.println(j1.getPokemonsEquipe().get(0).getPv() + " pv restant \n");
+                        }
+            
+            
+                       
+                    }
+            
+                    if (j1.getPokemonsEquipe().size() == 0) {
+                        out.println(j2.getPseudo() + " a gagné !");
+                    } else {
+                        out.println(j1.getPseudo() + " a gagné !");
+                    }
+            
+                    
+                    
+
 
 
                     // Vous pouvez accéder aux joueurs par joueurs.get(0) et joueurs.get(1)

@@ -193,6 +193,19 @@ public class Main implements Serializable {
 
                                     messageDuServeur = br.readLine();
                                     System.out.println("Message du serveur: " + messageDuServeur);
+
+                                    if (messageDuServeur.equals("Que voulez vous faire")){
+
+                                        
+                                        int choixCombat = sc.nextInt();
+                                        sc.nextLine(); // Pour consommer la nouvelle ligne après avoir lu l'entier
+                                        System.out.println("1. Attaquer");
+                                        System.out.println("2. Changer de pokemon");
+                                        
+                                        oos.writeInt(choixCombat);
+                                        oos.flush();
+
+                                    }
                             
                                     // Si le message est "fin", sortir de la boucle
                                     if (messageDuServeur.equals("fin")) {

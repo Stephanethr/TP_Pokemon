@@ -45,6 +45,10 @@ public class Pokemon implements Serializable {
         return pc;
     }
 
+    public boolean getEstVivant() {
+        return estVivant;
+    }
+
     public void setNom(String nom) {
 
         this.nom = nom;

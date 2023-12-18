@@ -2,45 +2,35 @@
 package src.serveur;
 import src.client.Dresseur;
 import src.client.Pokemon;
+
+import java.lang.Thread;
 import java.net.ServerSocket;
+import java.util.Scanner;
+
+
 public class Serveur {
 
+    
 
-    public static void combat(Dresseur dresseur1, Dresseur dresseur2) {
 
-        System.out.println("Combat entre " + dresseur1.getPseudo() + " et " + dresseur2.getPseudo());
+//     public static void combat(Dresseur dresseur1, Dresseur dresseur2) {
 
-        int i = 0;
-        int j = 0;
+//         System.out.println("Combat entre " + dresseur1.getPseudo() + " et " + dresseur2.getPseudo());
 
-        while (i < dresseur1.getPokemonsEquipe().size() && j < dresseur2.getPokemonsEquipe().size()) {
+//         int i = 0;
+//         int j = 0;
 
-            Pokemon pokemon1 = dresseur1.getPokemonsEquipe().get(i);
-            Pokemon pokemon2 = dresseur2.getPokemonsEquipe().get(j);
+//         while (i < dresseur1.getPokemonsEquipe().size() && j < dresseur2.getPokemonsEquipe().size()) {
 
-            System.out.println("Tour " + (i + j + 1) + " : " + pokemon1.getNom() + " VS " + pokemon2.getNom());
+//             System.out.println(dresseur1.getPseudo() + " envoie " + dresseur1.getPokemonsEquipe().get(i).getNom() + " ! \n");
 
-            while (pokemon1.getPv() > 0 && pokemon2.getPv() > 0) {
+//             System.out.println(dresseur2.getPseudo() + " envoie " + dresseur2.getPokemonsEquipe().get(j).getNom() + " ! \n");
 
-                
-            }
+            
 
-            if (pokemon1.getPv() <= 0) {
-                pokemon1.estKO();
-                i++;
-            } else {
-                pokemon2.estKO();
-                j++;
-            }
-
-        }
-
-        if (i == dresseur1.getPokemonsEquipe().size()) {
-            System.out.println(dresseur2.getPseudo() + " a gagné !");
-        } else {
-            System.out.println(dresseur1.getPseudo() + " a gagné !");
-        }
-    }
+            
+//     }
+// }
 
 
 
@@ -61,3 +51,4 @@ public class Serveur {
         
     }
 }
+
