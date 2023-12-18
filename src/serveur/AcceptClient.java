@@ -6,10 +6,14 @@ import java.io.ObjectInputStream;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AcceptClient extends Thread {
     private ServerSocket server;
     private int nbClients = 0;
+    List<Dresseur> joueurs = new ArrayList<>();
+
 
     public AcceptClient(ServerSocket server) {
         this.server = server;
@@ -33,7 +37,7 @@ public class AcceptClient extends Thread {
                     out.println("Un autre joueur est connecté. Le combat va commencer !");
                 }
 
-                new ClientHandler(socket, out).start();
+                new ClientHandler(socket, out).run();
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -51,15 +55,19 @@ public class AcceptClient extends Thread {
 
         public void run() {
             try {
-                ObjectInputStream ois = new ObjectInputStream(clientSocket.getInputStream());
-                Dresseur dresseur = (Dresseur) ois.readObject();
-                System.out.println("Dresseur reçu : " + dresseur.getPseudo());
-                ois.close();
-                out.close();
-                clientSocket.close();
+                ObjectInputStream in = new ObjectInputStream(clientSocket.getInputStream());
+                Dresseur dresseur = (Dresseur) in.readObject();
+                joueurs.add(dresseur); // Ajouter le joueur à la liste
+                
+                // Vérifier s'il y a deux joueurs dans la liste
+                if (joueurs.size() == 2) {
+                    // Démarrez le combat entre les deux joueurs ici
+                    // Vous pouvez accéder aux joueurs par joueurs.get(0) et joueurs.get(1)
+                }
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
         }
+        
     }
 }

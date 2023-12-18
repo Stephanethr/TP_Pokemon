@@ -189,13 +189,17 @@ public class Main implements Serializable {
                             
                                 // Boucle pour écouter les messages du serveur
                                 String messageDuServeur;
-                                while ((messageDuServeur = br.readLine()) != null) {
+                                while (true) {
+
+                                    messageDuServeur = br.readLine();
                                     System.out.println("Message du serveur: " + messageDuServeur);
                             
                                     // Si le message est "fin", sortir de la boucle
                                     if (messageDuServeur.equals("fin")) {
                                         break;
                                     }
+                                    
+
                                 }
                             
                                 // Nettoyage après la réception du message "fin"
