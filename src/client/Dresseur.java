@@ -5,20 +5,17 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Iterator;
 
-
-
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
-
 
 public class Dresseur implements Serializable {
 
     // Attributs
-
 
     private static final long serialVersionUID = 1L;
     private String pseudo;
@@ -52,7 +49,6 @@ public class Dresseur implements Serializable {
     public ArrayList<Bonbon> getBonbons() {
         return bonbons;
     }
-
 
     public void setBonbons(ArrayList<Bonbon> bonbons) {
         this.bonbons = bonbons;
@@ -104,7 +100,7 @@ public class Dresseur implements Serializable {
     public void supprimerBonbon(String typeBonbon, int quantite) {
         Iterator<Bonbon> iterator = bonbons.iterator();
         int compteur = 0;
-    
+
         while (iterator.hasNext()) {
             Bonbon bonbon = iterator.next();
             if (bonbon.getType().equals(typeBonbon)) {
@@ -116,7 +112,7 @@ public class Dresseur implements Serializable {
             }
         }
     }
-    
+
     // Affiche les pokémons du dresseur
     public void afficherPokemons() {
         for (int i = 0; i < pokemons.size(); i++) {
@@ -128,35 +124,50 @@ public class Dresseur implements Serializable {
 
     // Affiche les bonbons par type et leur compteur
     public void afficherBonbons() {
-    Map<String, Integer> bonbonsParType = this.getListeBonbonsParType();
+        Map<String, Integer> bonbonsParType = this.getListeBonbonsParType();
 
-    // Afficher les bonbons par type et leur compteur
-    for (Map.Entry<String, Integer> entry : bonbonsParType.entrySet()) {
-        String type = entry.getKey();
-        int compteur = entry.getValue();
-        System.out.println(type + " (x" + compteur + ")");
+        // Afficher les bonbons par type et leur compteur
+        for (Map.Entry<String, Integer> entry : bonbonsParType.entrySet()) {
+            String type = entry.getKey();
+            int compteur = entry.getValue();
+            System.out.println(type + " (x" + compteur + ")");
+        }
     }
-}
 
-    public static Dresseur charger(String filePath) {
-            Dresseur dresseur = null;
+    public static Dresseur charge(String filePath) {
+        Dresseur dresseur = null;
 
-            try {
-                ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filePath));
-                dresseur = (Dresseur) ois.readObject();
-                ois.close();
-                System.out.println("\n Dresseur chargé ! \n");
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();   
-            }
+        try {
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filePath));
+            dresseur = (Dresseur) ois.readObject();
+            ois.close();
+            System.out.println("\n Dresseur chargé ! \n");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
-            return dresseur;
+        return dresseur;
     }
-    
-    
+
+    public void save(String filePath) {
+        try {
+            // Création du flux de sortie vers le fichier
+            FileOutputStream fileOutputStream = new FileOutputStream(filePath);
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+
+            // Enregistrement du nom du dresseur dans le fichier
+            objectOutputStream.writeObject(this);
+
+            // Fermeture des flux
+            objectOutputStream.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

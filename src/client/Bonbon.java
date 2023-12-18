@@ -13,7 +13,7 @@ public class Bonbon implements Serializable {
         this.type = type;
     }
 
-    // Getters chaque attribut
+    // Getters pour chaque attribut
 
     public String getType() {
         return type;

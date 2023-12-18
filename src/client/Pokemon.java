@@ -95,6 +95,7 @@ public class Pokemon implements Serializable {
     }
 
     // Méthode pour vérifier le coût d'évolution du Pokémon
+    // et renvoie cette valeur
     public int verifCoutEvolution() {
 
         int valeur = 0;

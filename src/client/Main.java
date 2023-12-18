@@ -5,23 +5,6 @@ import java.util.Scanner;
 
 public class Main implements Serializable {
 
-    public static void save(String filePath, Dresseur dresseur) {
-        try {
-            // Création du flux de sortie vers le fichier
-            FileOutputStream fileOutputStream = new FileOutputStream(filePath);
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-
-            // Enregistrement du nom du dresseur dans le fichier
-            objectOutputStream.writeObject(dresseur);
-
-            // Fermeture des flux
-            objectOutputStream.close();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     public static void main(String[] args) {
 
         String filePath = "";
@@ -43,7 +26,7 @@ public class Main implements Serializable {
                 filePath = "src\\sauvegarde\\" + pseudo + ".txt";
 
                 if (new File(filePath).exists()) {
-                    dresseur = Dresseur.charger(filePath);
+                    dresseur = Dresseur.charge(filePath);
                     break;
                 } else {
                     System.out.println("Ce pseudo n'existe pas !");
@@ -53,7 +36,7 @@ public class Main implements Serializable {
                 pseudo = sc.nextLine();
                 dresseur = new Dresseur(pseudo);
                 filePath = "src\\sauvegarde\\" + pseudo + ".txt";
-                save(filePath, dresseur);
+                dresseur.save(filePath);
                 break;
             } else {
                 System.out.println("Vous n'avez pas choisi une option valide !");
@@ -238,7 +221,7 @@ public class Main implements Serializable {
 
                         System.out.println("Sauvegarde effectuée !");
 
-                        save(filePath, dresseur);
+                        dresseur.save(filePath);
                         break;
 
                     case 6:
@@ -254,7 +237,7 @@ public class Main implements Serializable {
                             break;
                         }
 
-                        dresseur = Dresseur.charger(fileCharge);
+                        dresseur = Dresseur.charge(fileCharge);
                         pseudo = pseudoCharge;
                         filePath = fileCharge;
 
@@ -263,7 +246,7 @@ public class Main implements Serializable {
                     case 7:
                         System.out.println("Vous avez choisi de quitter le jeu !\n");
                         System.out.println("Votre partie a été sauvegardée ! \n");
-                        save(filePath, dresseur);
+                        dresseur.save(filePath);
                         sc.close(); // Ferme le scanner avant de quitter
                         System.exit(0); // Termine le programme
                         break;
