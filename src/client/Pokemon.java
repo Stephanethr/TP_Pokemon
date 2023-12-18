@@ -58,8 +58,7 @@ public class Pokemon implements Serializable {
         return pv;
     }
 
-
-    public void setPv(int pv) {
+    public void setpv(int pv) {
         this.pv = pv;
     }
 
