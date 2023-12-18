@@ -16,7 +16,7 @@ public class Combat {
 
     // Méthode qui gère le combat
 
-    public void combat() {
+    public String combat() {
         System.out.println("Début du combat entre " + j1.getPseudo() + " et " + j2.getPseudo());
         String update = j1.getPseudo() + " envoie " + j1.getPokemonsEquipe().get(0).getNom();
         acceptClient.sendUpdateToClients(update);
@@ -24,7 +24,7 @@ public class Combat {
         acceptClient.sendUpdateToClients(update);
 
         while (true) {
-
+            
             if (j1.getPokemonsEquipe().isEmpty() || j2.getPokemonsEquipe().isEmpty()) {
                 break; // Arrêter le combat si l'une des équipes n'a plus de Pokémon
             }
@@ -45,7 +45,7 @@ public class Combat {
             j2.getPokemonsEquipe().get(0).estKO();
 
             if (j2.getPokemonsEquipe().get(0).getEstVivant()) {
-                update = j2.getPseudo() + " " + j2.getPokemonsEquipe().get(0).getNom() + " agonise sur le sol";
+                update = j2.getPseudo() + " : " + j2.getPokemonsEquipe().get(0).getNom() + " agonise sur le sol";
                 acceptClient.sendUpdateToClients(update);
                 j2.getPokemonsEquipe().remove(0);
                 if (j1.getPokemonsEquipe().isEmpty() || j2.getPokemonsEquipe().isEmpty()) {
@@ -95,7 +95,7 @@ public class Combat {
         }
 
         String winner = j1.getPokemonsEquipe().size() > 0 ? j1.getPseudo() : j2.getPseudo();
-        acceptClient.sendUpdateToClients("Le gagnant est : " + winner);
-      
+        
+        return winner;
     }
 }
