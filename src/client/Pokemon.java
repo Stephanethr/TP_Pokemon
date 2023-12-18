@@ -124,10 +124,15 @@ public class Pokemon implements Serializable {
         return valeur;
     }
 
+    // Méthode pour vérifier si le Pokémon peut évoluer
+    public boolean peutEvoluer() {
+        return this.evolutions.size() > 0;
+    }
+
     // Méthode pour faire évoluer le Pokémon
     public void evolution(Dresseur dresseur) {
         // Vérifier si le Pokémon a des évolutions possibles
-        if (this.evolutions.size() == 0) {
+        if (!this.peutEvoluer()) {
             System.out.println("Votre Pokémon " + this.nom + " ne peut pas évoluer.");
             return;
         }
@@ -173,6 +178,23 @@ public class Pokemon implements Serializable {
             System.out.println("Votre Pokémon a évolué en " + this.nom + " !");
         } else {
             System.out.println("Vous n'avez pas assez de bonbons pour faire évoluer " + this.nom);
+        }
+    }
+
+    // Méthode pour augmenter les stats du Pokémon
+    public void ameliorerStats(Dresseur dresseur){
+        if (!this.peutEvoluer()){
+            if (dresseur.getNombreBonbonsParType(this.type) >= 5) {
+                dresseur.supprimerBonbon(this.type, 5);
+                this.pc += random.nextInt(100) + 1; // Augmentation aléatoire des PC
+                this.pv += random.nextInt(10) + 1; // Augmentation aléatoire des PV
+                System.out.println("Votre Pokémon " + this.nom + " a amélioré ses stats !");
+            } else {
+                System.out.println("Vous n'avez pas assez de bonbons de type " + this.type + " pour augmenter les stats de " + this.nom);
+            }
+        }
+        else{
+            System.out.println("Votre Pokémon " + this.nom + " ne peut pas améliorer ses stats car il peut encore évoluer.");
         }
     }
 
@@ -521,7 +543,7 @@ public class Pokemon implements Serializable {
 
     }
 
-    // Méthode pour vérifier si le Pokémon est KO
+    // Méthode pour rendre le Pokémon KO
     public void estKO() {
         this.estVivant = this.pv <= 0;
         if (this.estVivant) {

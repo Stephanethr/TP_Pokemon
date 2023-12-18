@@ -165,6 +165,7 @@ public class Dresseur implements Serializable {
         }
     }
 
+    // a modifier
     public Pokemon selectPokemon(int id){
         Pokemon pokemon = listCombat.get(id);
         return pokemon;
