@@ -9,8 +9,8 @@ Piafabec:Rapasdepic
 Abo:Arbok
 Pikachu:Raichu
 Sabelette:Sablaireau
-Nidoran:Nidorina,Nidoqueen
-Nidoran:Nidorino,Nidoking
+Nidoran femelle:Nidorina,Nidoqueen
+Nidoran male:Nidorino,Nidoking
 Melofee:Melodelfe
 Goupix:Feunard
 Rondoudou:Grodoudou
