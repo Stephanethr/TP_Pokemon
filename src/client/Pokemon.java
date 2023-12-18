@@ -62,7 +62,8 @@ public class Pokemon implements Serializable {
         return pv;
     }
 
-    public void setpv(int pv) {
+    // Méthode pour définir les points de vie (PV) du Pokémon
+    public void setPv(int pv) {
         this.pv = pv;
     }
 

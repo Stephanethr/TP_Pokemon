@@ -165,36 +165,36 @@ public class Main implements Serializable {
                         dresseur.afficherPokemonsEquipe();
 
                         try {
-                                // Établir une connexion avec le serveur
-                                Socket socket = new Socket("localhost", 2000);
-                                ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
-                                BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-
-                                // Envoyer l'objet Dresseur au serveur
-                                oos.writeObject(dresseur);
-                                oos.flush();
-
-                                // Lire les messages du serveur
-                                String message;
-                                while ((message = br.readLine()) != null) {
-                                    System.out.println(message);
-                                    if (message.equals("fin")) {
-                                        break;
-                                    }
+                            Socket socket = new Socket("localhost", 2000);
+                            ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+                            BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                    
+                            oos.writeObject(dresseur);
+                            oos.flush();
+                    
+                            // Écouter les messages du serveur
+                            String message;
+                            while ((message = br.readLine()) != null) {
+                                System.out.println("Message reçu du serveur : " + message);
+                                if (message.equals("Le combat est terminé !")) {
+                                    break;
                                 }
-
-                            } catch (IOException e) {
-
-
-                                    
-
                             }
-
-                            // Nettoyage après la réception du message "fin"
-                            dresseur.listCombat.clear();
-
-                            System.out.println("appuyez sur entrée pour continuer \n");
-                            sc.nextLine();
+                    
+                            // Fermer les ressources
+                            socket.close();
+                            br.close();
+                            oos.close();
+                    
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    
+                        dresseur.listCombat.clear();
+                        System.out.println("Appuyez sur entrée pour continuer \n");
+                        sc.nextLine();
+                    
+                        break;
                             
 
                     }
