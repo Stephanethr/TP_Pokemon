@@ -165,6 +165,11 @@ public class Dresseur implements Serializable {
         }
     }
 
+    public Pokemon selectPokemon(int id){
+        Pokemon pokemon = listCombat.get(id);
+        return pokemon;
+    }
+
     public static Dresseur charge(String filePath) {
         Dresseur dresseur = null;
 

@@ -41,7 +41,7 @@ public class Pokemon implements Serializable {
         this.type = type;
     }
 
-    public int getpc() {
+    public int getPc() {
         return pc;
     }
 
@@ -50,15 +50,15 @@ public class Pokemon implements Serializable {
         this.nom = nom;
     }
 
-    public void setpc(int pc) {
+    public void setPc(int pc) {
         this.pc = pc;
     }
 
-    public int getpv() {
+    public int getPv() {
         return pv;
     }
 
-    public void setpv(int pv) {
+    public void setPv(int pv) {
         this.pv = pv;
     }
 
