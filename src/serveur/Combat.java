@@ -14,6 +14,8 @@ public class Combat {
         this.acceptClient = acceptClient;
     }
 
+    // Méthode qui gère le combat
+
     public String combat() {
         System.out.println("Début du combat entre " + j1.getPseudo() + " et " + j2.getPseudo());
         while (j1.getPokemonsEquipe().size() > 0 && j2.getPokemonsEquipe().size() > 0) {
@@ -23,6 +25,16 @@ public class Combat {
             update = j2.getPseudo() + " envoie " + j2.getPokemonsEquipe().get(0).getNom();
             acceptClient.sendUpdateToClients(update);
 
+            // Les Pokémon s'attaquent
+
+            try {
+                Thread.sleep(2000); // Attendez 5 secondes entre les attaques
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            
+
             j1.getPokemonsEquipe().get(0).attaque(j2.getPokemonsEquipe().get(0));
             j2.getPokemonsEquipe().get(0).estKO();
 
@@ -30,9 +42,16 @@ public class Combat {
                 update = j2.getPokemonsEquipe().get(0).getNom() + " agonise sur le sol";
                 acceptClient.sendUpdateToClients(update);
                 j2.getPokemonsEquipe().remove(0);
+                System.out.println(j2.getPseudo() + " envoie " + j2.getPokemonsEquipe().get(0).getNom());
             } else {
-                update = j2.getPokemonsEquipe().get(0).getNom()+ " " + j2.getPokemonsEquipe().get(0).getPv() + " pv restant";
+                update = j2.getPseudo() + " : " +j2.getPokemonsEquipe().get(0).getNom()+ " " + j2.getPokemonsEquipe().get(0).getPv() + " pv restant";
                 acceptClient.sendUpdateToClients(update);
+            }
+
+            try {
+                Thread.sleep(2000); // Attendez 5 secondes entre les attaques
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
 
             if (j1.getPokemonsEquipe().isEmpty() || j2.getPokemonsEquipe().isEmpty()) {
@@ -44,12 +63,19 @@ public class Combat {
             j1.getPokemonsEquipe().get(0).estKO();
 
             if (j1.getPokemonsEquipe().get(0).getEstVivant()) {
-                update = j1.getPokemonsEquipe().get(0).getNom() + " agonise sur le sol";
+                update = j1.getPseudo() + " : " + j1.getPokemonsEquipe().get(0).getNom() + " agonise sur le sol";
                 acceptClient.sendUpdateToClients(update);
                 j1.getPokemonsEquipe().remove(0);
+                System.out.println(j1.getPseudo() + " envoie " + j1.getPokemonsEquipe().get(0).getNom());
             } else {
                 update = j1.getPokemonsEquipe().get(0).getNom() + " " + j1.getPokemonsEquipe().get(0).getPv() + " pv restant";
                 acceptClient.sendUpdateToClients(update);
+            }
+
+            try {
+                Thread.sleep(2000); // Attendez 5 secondes entre les attaques
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
 
             
