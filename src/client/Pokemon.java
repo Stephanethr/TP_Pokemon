@@ -182,19 +182,20 @@ public class Pokemon implements Serializable {
     }
 
     // Méthode pour augmenter les stats du Pokémon
-    public void ameliorerStats(Dresseur dresseur){
-        if (!this.peutEvoluer()){
+    public void ameliorerStats(Dresseur dresseur) {
+        if (!this.peutEvoluer()) {
             if (dresseur.getNombreBonbonsParType(this.type) >= 5) {
                 dresseur.supprimerBonbon(this.type, 5);
                 this.pc += random.nextInt(100) + 1; // Augmentation aléatoire des PC
                 this.pv += random.nextInt(10) + 1; // Augmentation aléatoire des PV
                 System.out.println("Votre Pokémon " + this.nom + " a amélioré ses stats !");
             } else {
-                System.out.println("Vous n'avez pas assez de bonbons de type " + this.type + " pour augmenter les stats de " + this.nom);
+                System.out.println("Vous n'avez pas assez de bonbons de type " + this.type
+                        + " pour augmenter les stats de " + this.nom);
             }
-        }
-        else{
-            System.out.println("Votre Pokémon " + this.nom + " ne peut pas améliorer ses stats car il peut encore évoluer.");
+        } else {
+            System.out.println(
+                    "Votre Pokémon " + this.nom + " ne peut pas améliorer ses stats car il peut encore évoluer.");
         }
     }
 
