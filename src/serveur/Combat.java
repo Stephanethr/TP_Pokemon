@@ -42,7 +42,7 @@ public class Combat {
             acceptClient.sendUpdateToClients(update);
 
             if (pokemonJ2.getPv() <= 0) {
-                update = " Le " + pokemonJ2.getNom() + "de " + j2.getPseudo() + " agonise sur le sol";
+                update = "Le " + pokemonJ2.getNom() + " de " + j2.getPseudo() + " est DECEDE";
                 acceptClient.sendUpdateToClients(update);
                 j2.getPokemonsEquipe().remove(0);
                 if (j1.getPokemonsEquipe().isEmpty() || j2.getPokemonsEquipe().isEmpty()) {
@@ -51,7 +51,7 @@ public class Combat {
                 pokemonJ2 = j2.getPokemonsEquipe().get(0);
                 System.out.println(j2.getPseudo() + " envoie " + pokemonJ2.getNom());
             } else {
-                update = j2.getPseudo() + " : " + pokemonJ2.getNom() + " " + pokemonJ2.getPv() + " pv restant";
+                update = pokemonJ2.getNom() + " de " + j2.getPseudo() + " a  " + pokemonJ2.getPv() + " pv restant";
                 acceptClient.sendUpdateToClients(update);
             }
 
@@ -66,7 +66,7 @@ public class Combat {
             acceptClient.sendUpdateToClients(update);
 
             if (pokemonJ1.getPv() <= 0) {
-                update = " le " + pokemonJ1.getNom() + " de " + j1.getPseudo() + " agonise sur le sol";
+                update = "le " + pokemonJ1.getNom() + " de " + j1.getPseudo() + " est MORT";
                 acceptClient.sendUpdateToClients(update);
                 j1.getPokemonsEquipe().remove(0);
                 if (j1.getPokemonsEquipe().isEmpty() || j2.getPokemonsEquipe().isEmpty()) {
@@ -75,7 +75,7 @@ public class Combat {
                 pokemonJ1 = j1.getPokemonsEquipe().get(0);
                 System.out.println(j1.getPseudo() + " envoie " + pokemonJ1.getNom());
             } else {
-                update = j1.getPseudo() + " " + pokemonJ1.getNom() + " " + pokemonJ1.getPv() + " pv restant";
+                update = pokemonJ1.getNom() + " de " + j1.getPseudo() + " a  " + pokemonJ1.getPv() + " pv restant";
                 acceptClient.sendUpdateToClients(update);
             }
 

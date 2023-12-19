@@ -49,7 +49,7 @@ public class AcceptClient extends Thread {
     }
 
     public void sendUpdateToClients(String message) {
-        System.out.println("Envoi de la mise à jour aux clients : " + message);
+        System.out.println(message);
         for (ClientHandler handler : clientHandlers) {
             handler.sendResult(message);
         }
