@@ -29,6 +29,13 @@ public class AcceptClient extends Thread {
                 clientHandler.start();
 
                 if (clientHandlers.size() == 2) {
+
+                    try {
+                        Thread.sleep(3000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
                     System.out.println("Deux joueurs connectés, démarrage du combat");
                     startCombat(); // Démarre le combat une fois que deux clients sont connectés
                 }
@@ -86,6 +93,7 @@ public class AcceptClient extends Thread {
                 out = new PrintWriter(clientSocket.getOutputStream(), true);
 
                 Thread.sleep(1000); // Attendez 1 seconde pour que le client soit prêt à recevoir les données
+
                 
                 dresseur = (Dresseur) in.readObject();
                 System.out.println("Dresseur reçu : " + dresseur.getPseudo());
