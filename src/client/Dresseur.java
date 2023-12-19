@@ -161,19 +161,21 @@ public class Dresseur implements Serializable {
             System.out.println("Vous avez déjà 6 pokémons dans votre équipe de combat");
             return;
         }
-        if (id == listCombat.size()) {
-            System.out.println("Vous avez déjà ajouté ce pokémon à votre équipe de combat");
-            return;
-        }
         if (id >= 0 && id < pokemons.size()) {
             Pokemon pokemon = pokemons.get(id);
+            if (listCombat.contains(pokemon)) {
+                System.out.println("Vous avez déjà ajouté ce pokémon à votre équipe de combat");
+                return;
+            }
             listCombat.add(pokemon);
             System.out.println("Vous avez ajouté " + pokemon.getNom() + " à votre équipe de combat");
         } else {
             System.out.println("ID invalide. Aucun Pokémon n'a été ajouté.");
         }
-
     }
+    
+
+    
 
     public void afficherPokemonsEquipe() {
         for (int i = 0; i < listCombat.size(); i++) {
