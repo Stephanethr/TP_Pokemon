@@ -11,12 +11,12 @@ A la création d'un nouveau compte un fichier texte sera créé dans le dossier 
 
 Si vous souhaitez charger votre sauvegarde, répondez y à la première question et renseignez le nom de votre compte.
 
-  _________________________________________________________________________________________________________________________________________________________
+_________________________________________________________________________________________________________________________________________________________
 
 Une fois dans le menu principal vous aurez une liste de choix, entrez en console le numéro correspondant au choix souhaité.
 - Pour évoluer ou supprimer un pokemon il vous faudra choisir l'option "3. Voir ses pokemon"  puis dans ce sous-menu vous aurez accès aux options "évoluer" et "supprimer".
 
-  _________________________________________________________________________________________________________________________________________________________
+_________________________________________________________________________________________________________________________________________________________
   
 Si vous souhaitez affronter un autre dresseur vous devrez :
 - crée deux dresseur
