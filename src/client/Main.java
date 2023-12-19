@@ -177,14 +177,20 @@ public class Main implements Serializable {
                             while ((message = br.readLine()) != null) {
                                 System.out.println("Message reçu du serveur : " + message);
                                 if (message.equals("Le combat est terminé !")) {
-                                    break;
+
+
+                                    
+                                    continue;
+
                                 }
                             }
                     
                             // Fermer les ressources
+
                             socket.close();
                             br.close();
                             oos.close();
+                            
                     
                         } catch (IOException e) {
                             e.printStackTrace();

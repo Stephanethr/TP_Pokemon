@@ -1,13 +1,6 @@
 //fichier Serveur.java
 package src.serveur;
-import src.client.Dresseur;
-import src.client.Pokemon;
-
-import java.lang.Thread;
 import java.net.ServerSocket;
-import java.util.Scanner;
-
-
 public class Serveur {
 
     

@@ -47,11 +47,11 @@ public class AcceptClient extends Thread {
 
     private void startCombat() {
         System.out.println("Début de la méthode startCombat");
-        Dresseur j1 = clientHandlers.get(0).getDresseur();
+        Dresseur j1 = clientHandlers.get(0).dresseur;
 
         System.out.println("j1 : " + j1);
 
-        Dresseur j2 = clientHandlers.get(1).getDresseur();
+        Dresseur j2 = clientHandlers.get(1).dresseur;
 
         System.out.println("j2 : " + j2);
         
@@ -60,8 +60,12 @@ public class AcceptClient extends Thread {
             Combat combat = new Combat(j1, j2, this);
             String winner = combat.combat();
             sendUpdateToClients("Le gagnant est : " + winner);
+            clientHandlers.clear();
+
+
         }
         System.out.println("Fin de la méthode startCombat");    
+        System.out.println("Le combat est terminé !");
 
         clientHandlers.clear();
     }
@@ -80,11 +84,16 @@ public class AcceptClient extends Thread {
             try {
                 ObjectInputStream in = new ObjectInputStream(clientSocket.getInputStream());
                 out = new PrintWriter(clientSocket.getOutputStream(), true);
+
+                Thread.sleep(1000); // Attendez 1 seconde pour que le client soit prêt à recevoir les données
                 
                 dresseur = (Dresseur) in.readObject();
-                // Autres logiques...
+                System.out.println("Dresseur reçu : " + dresseur.getPseudo());
     
             } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
@@ -95,9 +104,6 @@ public class AcceptClient extends Thread {
             }
         }
     
-        public Dresseur getDresseur() {
-            return dresseur;
-        }
     }
     
 }
