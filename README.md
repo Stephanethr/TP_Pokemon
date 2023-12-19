@@ -18,18 +18,20 @@ Se positionner dans le dossier tpPokemon, lancer le main présent dans le fichie
 
 A la création d'un nouveau compte un fichier texte sera créé dans le dossier sauvegarde au nom donné par le joueur.
 
-Si vous souhaitez charger votre sauvegarde, répondez y à la première question et renseignez le nom de votre compte.
+Si vous souhaitez charger votre sauvegarde, répondez "y" à la première question et renseignez le nom de votre compte.
 
 
 Une fois dans le menu principal vous aurez une liste de choix, entrez en console le numéro correspondant au choix souhaité.
-- Pour évoluer ou supprimer un pokemon il vous faudra choisir l'option "3. Voir ses pokemon"  puis dans ce sous-menu vous aurez accès aux options "évoluer" et "supprimer".
+- Pour évoluer ou supprimer un pokemon il vous faudra choisir l'option "3. Voir ses pokemons"  puis dans ce sous-menu vous aurez accès aux options "évoluer" et "supprimer".
 
-Si vous souhaitez affronter un autre dresseur vous devrez :
-- crée deux dresseur
-- leur faire capturer 6 pokemon
+Pour se faire affronter deux dresseurs vous devez au préalable :
+- créer deux dresseur
+- posséder 6 pokemons minimum
 - lancer le serveur "src/Serveur/Serveur.java"
-- pour chaque dresseur dans le menu choisir l'option 2, selectioner 6 pokemon
-- une fois les pokemon selectionné il suffit d'attendre que les deux dresseur soit connecte pour que le combat se lance.
+- le combat se lance grâce à l'option "2. Combattre un autre dresseur"
+- il vous sera demandé de selectionner 6 pokemons pour combattre
+- une fois ceci fait le combat s'exécute automatiquement
+- une fois le combat fini le pseudo du gagnant est affiché et celui-ci gagne 100 points d'xp (ce qui le fait monter d'un niveau)
 
 
 _________________________________________________________________________________________________________________________________________________________
