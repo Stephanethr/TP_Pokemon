@@ -56,7 +56,6 @@ public class AcceptClient extends Thread {
     }
 
     private void startCombat() {
-        System.out.println("Début de la méthode startCombat");
         Dresseur j1 = clientHandlers.get(0).dresseur;
 
         System.out.println("j1 : " + j1);
@@ -66,7 +65,6 @@ public class AcceptClient extends Thread {
         System.out.println("j2 : " + j2);
         
         if (j1 != null && j2 != null) {
-            System.out.println("rentre dans le if   ");
             Combat combat = new Combat(j1, j2, this);
             String winner = combat.combat();
             sendUpdateToClients("Le gagnant est : " + winner);
@@ -79,7 +77,6 @@ public class AcceptClient extends Thread {
 
 
         }
-        System.out.println("Fin de la méthode startCombat");    
         System.out.println("Le combat est terminé !");
 
         clientHandlers.clear();
@@ -109,7 +106,6 @@ public class AcceptClient extends Thread {
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
