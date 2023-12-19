@@ -1,7 +1,16 @@
 # tpPokemon
 
+
+_________________________________________________________________________________________________________________________________________________________
+  
+
 # Projet réalisé par :
 Stéphane Thiry et Frédéric Turcq-Santucci
+
+
+_________________________________________________________________________________________________________________________________________________________
+  
+
 
 # Fonctionnement 
 
@@ -11,8 +20,20 @@ A la création d'un nouveau compte un fichier texte sera créé dans le dossier 
 
 Si vous souhaitez charger votre sauvegarde, répondez y à la première question et renseignez le nom de votre compte.
 
+
 Une fois dans le menu principal vous aurez une liste de choix, entrez en console le numéro correspondant au choix souhaité.
 - Pour évoluer ou supprimer un pokemon il vous faudra choisir l'option "3. Voir ses pokemon"  puis dans ce sous-menu vous aurez accès aux options "évoluer" et "supprimer".
+
+Si vous souhaitez affronter un autre dresseur vous devrez :
+- crée deux dresseur
+- leur faire capturer 6 pokemon
+- lancer le serveur "src/Serveur/Serveur.java"
+- pour chaque dresseur dans le menu choisir l'option 2, selectioner 6 pokemon
+- une fois les pokemon selectionné il suffit d'attendre que les deux dresseur soit connecte pour que le combat se lance.
+
+
+_________________________________________________________________________________________________________________________________________________________
+  
 
 #  ATTENTION  
 Pour faire évoluer un pokémon vous aurez besoin de :
