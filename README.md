@@ -5,7 +5,7 @@ Stéphane Thiry et Frédéric Turcq-Santucci
 
 # Fonctionnement 
 
-Se positionner dans le dossier tpPokemon/src, lancer le main présent dans le fichier src/Client/main.java.
+Se positionner dans le dossier tpPokemon, lancer le main présent dans le fichier src/Client/main.java.
 
 A la création d'un nouveau compte un fichier texte sera créé dans le dossier sauvegarde au nom donné par le joueur.
 
