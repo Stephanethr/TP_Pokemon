@@ -3,6 +3,8 @@
 # Projet réalisé par :
 Stéphane Thiry et Frédéric Turcq-Santucci
 
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
 # Fonctionnement 
 
 Se positionner dans le dossier tpPokemon, lancer le main présent dans le fichier src/Client/main.java.
@@ -24,6 +26,8 @@ Si vous souhaitez affronter un autre dresseur vous devrez :
 - lancer le serveur "src/Serveur/Serveur.java"
 - pour chaque dresseur dans le menu choisir l'option 2, selectioner 6 pokemon
 - une fois les pokemon selectionné il suffit d'attendre que les deux dresseur soit connecte pour que le combat se lance.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
 
 #  ATTENTION  
 Pour faire évoluer un pokémon vous aurez besoin de :
