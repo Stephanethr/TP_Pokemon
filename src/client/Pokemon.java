@@ -236,8 +236,6 @@ public class Pokemon implements Serializable {
                     default:
                         break;
                 }
-                break;
-
             case "Glace":
                 switch (pokemonAdverse.type) {
                     case "Glace":
@@ -264,7 +262,6 @@ public class Pokemon implements Serializable {
                     default:
                         break;
                 }
-                break;
             case "Normal":
                 switch (pokemonAdverse.type) {
                     case "Roche":
@@ -276,7 +273,6 @@ public class Pokemon implements Serializable {
                     default:
                         break;
                 }
-                break;
             case "Spectre":
                 switch (pokemonAdverse.type) {
                     case "Normal":

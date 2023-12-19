@@ -18,24 +18,22 @@ public class Dresseur implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private String pseudo;
+    private int niveau;
+    private int xp;
     ArrayList<Pokemon> pokemons = new ArrayList<Pokemon>();
     ArrayList<Bonbon> bonbons = new ArrayList<Bonbon>();
     ArrayList<Pokemon> listCombat = new ArrayList<Pokemon>();
 
     public Dresseur(String pseudo) {
-
         this.pseudo = pseudo;
-
+        this.niveau = 1;
+        this.xp = 0;
     }
 
     // Getters et Setters pour chaque attribut
 
     public String getPseudo() {
         return pseudo;
-    }
-
-    public ArrayList<Pokemon> getPokemonsEquipe() {
-        return listCombat;
     }
 
     public void setPseudo(String pseudo) {
@@ -56,6 +54,26 @@ public class Dresseur implements Serializable {
 
     public void setBonbons(ArrayList<Bonbon> bonbons) {
         this.bonbons = bonbons;
+    }
+
+    public ArrayList<Pokemon> getPokemonsEquipe() {
+        return listCombat;
+    }
+
+    public int getNiveau() {
+        return niveau;
+    }
+
+    public void setNiveau(int niveau) {
+        if (niveau >= 1 && niveau <= 100) {
+            this.niveau = niveau;
+        } else {
+            System.out.println("Niveau invalide. Le niveau doit être compris entre 1 et 100.");
+        }
+    }
+
+    public int getXp() {
+        return xp;
     }
 
     // ----------- Méthodes classe Dresseur -------------------
@@ -165,10 +183,13 @@ public class Dresseur implements Serializable {
         }
     }
 
-    // a modifier
-    public Pokemon selectPokemon(int id){
-        Pokemon pokemon = listCombat.get(id);
-        return pokemon;
+    public void gagnerXp(int xp) {
+        this.xp += xp;
+        if (this.xp >= 100) {
+            this.xp -= 100;
+            this.niveau++;
+            System.out.println("Vous avez gagné un niveau !\n");
+        }
     }
 
     public static Dresseur charge(String filePath) {

@@ -11,7 +11,7 @@ import java.util.List;
 public class AcceptClient extends Thread {
     private ServerSocket server;
     private List<ClientHandler> clientHandlers = new ArrayList<>();
-    private PrintWriter out;
+    // private PrintWriter out;
     private ObjectInputStream in; // Ajouter un attribut pour le flux d'entrée
     
 

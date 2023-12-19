@@ -18,9 +18,9 @@ public class Combat {
 
     public String combat() {
         System.out.println("Début du combat entre " + j1.getPseudo() + " et " + j2.getPseudo());
-        String update = j1.getPseudo() + " envoie " + j1.getPokemonsEquipe().get(0).getNom();
+        String update = j1.getPseudo() + " envoie " + j1.getPokemonsEquipe().get(0).getNom() + " : [ " + j1.getPokemonsEquipe().get(0).getPc() + " PC | " + j1.getPokemonsEquipe().get(0).getPv() + " PV ]";
         acceptClient.sendUpdateToClients(update);
-        update = j2.getPseudo() + " envoie " + j2.getPokemonsEquipe().get(0).getNom();
+        update = j2.getPseudo() + " envoie " + j2.getPokemonsEquipe().get(0).getNom() + " : [ " + j2.getPokemonsEquipe().get(0).getPc() + " PC | " + j2.getPokemonsEquipe().get(0).getPv() + " PV ]";;
         acceptClient.sendUpdateToClients(update);
 
         while (true) {
@@ -49,9 +49,10 @@ public class Combat {
                     break; // Arrêter le combat si l'une des équipes n'a plus de Pokémon
                 }
                 pokemonJ2 = j2.getPokemonsEquipe().get(0);
-                System.out.println(j2.getPseudo() + " envoie " + pokemonJ2.getNom());
+                update = j2.getPseudo() + " envoie " + pokemonJ2.getNom() + " : [ " + pokemonJ2.getPc() + " PC | " + pokemonJ2.getPv() + " PV ]";
+                acceptClient.sendUpdateToClients(update);
             } else {
-                update = pokemonJ2.getNom() + " de " + j2.getPseudo() + " a  " + pokemonJ2.getPv() + " pv restant";
+                update = pokemonJ2.getNom() + " de " + j2.getPseudo() + " a " + pokemonJ2.getPv() + " pv restant";
                 acceptClient.sendUpdateToClients(update);
             }
 
@@ -73,9 +74,10 @@ public class Combat {
                     break; // Arrêter le combat si l'une des équipes n'a plus de Pokémon
                 }
                 pokemonJ1 = j1.getPokemonsEquipe().get(0);
-                System.out.println(j1.getPseudo() + " envoie " + pokemonJ1.getNom());
+                update = j1.getPseudo() + " envoie " + pokemonJ1.getNom() + " : [ " + pokemonJ1.getPc() + " PC | " + pokemonJ1.getPv() + " PV ]";
+                acceptClient.sendUpdateToClients(update);
             } else {
-                update = pokemonJ1.getNom() + " de " + j1.getPseudo() + " a  " + pokemonJ1.getPv() + " pv restant";
+                update = pokemonJ1.getNom() + " de " + j1.getPseudo() + " a " + pokemonJ1.getPv() + " pv restant";
                 acceptClient.sendUpdateToClients(update);
             }
 
@@ -88,7 +90,6 @@ public class Combat {
         }
 
         String winner = j1.getPokemonsEquipe().size() > 0 ? j1.getPseudo() : j2.getPseudo();
-
         return winner;
     }
 }

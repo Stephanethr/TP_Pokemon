@@ -53,9 +53,10 @@ public class Main implements Serializable {
             System.out.println("2. Combattre un autre dresseur");
             System.out.println("3. Voir ses pokemons");
             System.out.println("4. Voir ses bonbons");
-            System.out.println("5. Sauvegarder votre partie");
-            System.out.println("6. Charger une partie");
-            System.out.println("7. Quitter le jeu \n");
+            System.out.println("5. Voir son niveau");
+            System.out.println("6. Sauvegarder votre partie");
+            System.out.println("7. Charger une partie");
+            System.out.println("8. Quitter le jeu \n");
 
             int choix = sc.nextInt();
             sc.nextLine(); // Pour consommer la nouvelle ligne après avoir lu l'entier
@@ -168,40 +169,43 @@ public class Main implements Serializable {
                             Socket socket = new Socket("localhost", 2000);
                             ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
                             BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                    
+
                             oos.writeObject(dresseur);
                             oos.flush();
-                    
+
                             // Écouter les messages du serveur
                             String message;
                             while ((message = br.readLine()) != null) {
                                 System.out.println("Message reçu du serveur : " + message);
+                                if (message.equals("Le gagnant est : " + dresseur.getPseudo())) {
+                                    System.out.println("Vous avez gagné 100 XP ! \n");
+                                    dresseur.gagnerXp(dresseur.getXp() + 100);
+                                    System.out.println("Vous êtes maintenant niveau " + dresseur.getNiveau() + " ! \n");
+                                    System.out.println("appuyez sur entrée pour continuer \n");
+                                    sc.nextLine();
+                                }
                                 if (message.equals("Le combat est terminé !")) {
 
-
-                                    
                                     continue;
 
                                 }
                             }
-                    
+
                             // Fermer les ressources
 
                             socket.close();
                             br.close();
                             oos.close();
-                            
-                    
+
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                    
+
                         dresseur.listCombat.clear();
                         System.out.println("Appuyez sur entrée pour continuer \n");
                         sc.nextLine();
-                    
+
                         break;
-                            
 
                     }
                     break;
@@ -302,12 +306,20 @@ public class Main implements Serializable {
 
                 case 5:
 
+                    System.out.println("Vous avez choisi de votre niveau !\n");
+                    System.out.println("Niveau : " + dresseur.getNiveau() + "\n");
+                    System.out.println("XP : " + dresseur.getXp() + "\n");
+                    System.out.println("appuyez sur entrée pour continuer \n");
+                    sc.nextLine();
+
+                case 6:
+
                     System.out.println("Sauvegarde effectuée !");
 
                     dresseur.save(filePath);
                     break;
 
-                case 6:
+                case 7:
                     System.out.println("Vous avez choisi de charger une partie ! \n");
 
                     System.out.println("quel est le pseudo de votre sauvegarde ?");
@@ -326,7 +338,7 @@ public class Main implements Serializable {
 
                     break;
 
-                case 7:
+                case 8:
                     System.out.println("Vous avez choisi de quitter le jeu !\n");
                     System.out.println("Votre partie a été sauvegardée ! \n");
                     dresseur.save(filePath);
