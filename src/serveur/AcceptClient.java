@@ -11,12 +11,15 @@ import java.util.List;
 public class AcceptClient extends Thread {
     private ServerSocket server;
     private List<ClientHandler> clientHandlers = new ArrayList<>();
+    private PrintWriter out;
+    private ObjectInputStream in; // Ajouter un attribut pour le flux d'entrée
+    
 
     public AcceptClient(ServerSocket server) {
         this.server = server;
     }
 
-    public void run() {
+    public void run() { 
         System.out.println("Serveur en attente de connexion sur le port 2000");
 
         try {
@@ -67,6 +70,11 @@ public class AcceptClient extends Thread {
             Combat combat = new Combat(j1, j2, this);
             String winner = combat.combat();
             sendUpdateToClients("Le gagnant est : " + winner);
+
+            // Fermer les connexions avec les clients
+            for (ClientHandler handler : clientHandlers) {
+            handler.closeConnection();
+        }
             clientHandlers.clear();
 
 
@@ -89,7 +97,7 @@ public class AcceptClient extends Thread {
     
         public void run() {
             try {
-                ObjectInputStream in = new ObjectInputStream(clientSocket.getInputStream());
+                in = new ObjectInputStream(clientSocket.getInputStream());
                 out = new PrintWriter(clientSocket.getOutputStream(), true);
 
                 Thread.sleep(1000); // Attendez 1 seconde pour que le client soit prêt à recevoir les données
@@ -109,6 +117,22 @@ public class AcceptClient extends Thread {
         public void sendResult(String message) {
             if (out != null) {
                 out.println(message);
+            }
+        }
+
+        public void closeConnection() {
+            try {
+                if (out != null) {
+                    out.close();
+                }
+                if (in != null) {
+                    in.close();
+                }
+                if (clientSocket != null) {
+                    clientSocket.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
     
