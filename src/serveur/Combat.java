@@ -29,8 +29,6 @@ public class Combat {
                 break; // Arrêter le combat si l'une des équipes n'a plus de Pokémon
             }
 
-            // Les Pokémon s'attaquent
-
             try {
                 Thread.sleep(2000); // Attendez 2 secondes entre les attaques
             } catch (InterruptedException e) {
@@ -39,12 +37,12 @@ public class Combat {
 
             Pokemon pokemonJ1 = j1.getPokemonsEquipe().get(0);
             Pokemon pokemonJ2 = j2.getPokemonsEquipe().get(0);
-            System.out.println("le " + pokemonJ1.getNom() + " de " + j1.getPseudo() + " attaque " + pokemonJ2.getNom());
+            update = "le " + pokemonJ1.getNom() + " de " + j1.getPseudo() + " attaque " + pokemonJ2.getNom();
             pokemonJ1.attaque(pokemonJ2);
-            pokemonJ2.estKO(); // Vérifiez si le Pokémon est KO et passer son attribut estVivant à false
+            acceptClient.sendUpdateToClients(update);
 
-            if (!pokemonJ2.getEstVivant()) {
-                update = j2.getPseudo() + " : " + pokemonJ2.getNom() + " agonise sur le sol";
+            if (pokemonJ2.getPv() <= 0) {
+                update = " Le " + pokemonJ2.getNom() + "de " + j2.getPseudo() + " agonise sur le sol";
                 acceptClient.sendUpdateToClients(update);
                 j2.getPokemonsEquipe().remove(0);
                 if (j1.getPokemonsEquipe().isEmpty() || j2.getPokemonsEquipe().isEmpty()) {
@@ -63,13 +61,12 @@ public class Combat {
                 e.printStackTrace();
             }
 
-            System.out.println("le " + pokemonJ2.getNom() + " de " + j2.getPseudo() + " attaque " + pokemonJ1.getNom());
-
+            update = "le " + pokemonJ2.getNom() + " de " + j2.getPseudo() + " attaque " + pokemonJ1.getNom();
             pokemonJ2.attaque(pokemonJ1);
-            pokemonJ1.estKO(); // Vérifiez si le Pokémon est KO et passer son attribut estVivant à false
+            acceptClient.sendUpdateToClients(update);
 
-            if (!pokemonJ1.getEstVivant()) {
-                update = j1.getPseudo() + " : " + pokemonJ1.getNom() + " agonise sur le sol";
+            if (pokemonJ1.getPv() <= 0) {
+                update = " le " + pokemonJ1.getNom() + " de " + j1.getPseudo() + " agonise sur le sol";
                 acceptClient.sendUpdateToClients(update);
                 j1.getPokemonsEquipe().remove(0);
                 if (j1.getPokemonsEquipe().isEmpty() || j2.getPokemonsEquipe().isEmpty()) {
