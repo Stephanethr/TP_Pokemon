@@ -1,18 +1,13 @@
 # tpPokemon
 
 
-_________________________________________________________________________________________________________________________________________________________
-  
+## Explication
 
-# Projet réalisé par :
-Stéphane Thiry et Frédéric Turcq-Santucci
-
-
-_________________________________________________________________________________________________________________________________________________________
+Ce projet représente un TP fais en Licence 3 SPI
   
 
 
-# Fonctionnement 
+## Fonctionnement 
 
 Se positionner dans le dossier tpPokemon, lancer le main présent dans le fichier src/Client/main.java.
 
@@ -32,14 +27,18 @@ Pour se faire affronter deux dresseurs vous devez au préalable :
 - il vous sera demandé de selectionner 6 pokemons pour combattre
 - une fois ceci fait le combat s'exécute automatiquement
 - une fois le combat fini le pseudo du gagnant est affiché et celui-ci gagne 100 points d'xp (ce qui le fait monter d'un niveau)
-
-
-_________________________________________________________________________________________________________________________________________________________
   
 
-#  ATTENTION  
+##  ATTENTION  
 Pour faire évoluer un pokémon vous aurez besoin de :
   -  10 bonbons si le pokémon n'a qu'une seule évolution ou si c'est sa dernière évolution
   -  5 bonbons si le pokémon possède plusieurs évolutions et que c'est sa première évolution
   -  10 bonbon pour "Evoli", il évoluera dans une des 3 évolutions possibles : Pyroli, Voltali, Aquali, de manière aléatoire
 
+Diagrammes UML
+Les diagrammes UML de conception du projet sont disponibles dans le dossier diagram. Ils ont été créés à l'aide de l'outil Draw.io.
+
+## Auteurs
+
+- [Frédéric Turcq-santucci](https://github.com/fturcq-santucci)
+- [Stéphane Thiry](https://github.com/Stephanethr)
